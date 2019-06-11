@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.logoLogin {
+  height: 200px;
+  width: auto;
+  padding-top: 30px;
+}
+
+footer {
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
+}

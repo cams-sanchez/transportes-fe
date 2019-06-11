@@ -1,11 +1,33 @@
 {
   "name": "transportes-fe-react",
+  "description": "A platform to handle a transportation company information",
+  "main": "index.js",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puchopsky/transportes-sancar-react"
+  },
+  "keywords": [
+    "transportes",
+    "carlos",
+    "sanchez",
+    "migue",
+    "tania"
+  ],
+  "author": "Rafael Augusto Galvan Fuentes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/puchopsky/transportes-sancar-react/issues"
+  },
+  "homepage": "https://github.com/puchopsky/transportes-sancar-react#readme",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "reactstrap": "^8.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,5 +49,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0"
   }
 }

@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component, Fragment} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import HeaderLogin from "./components/HeaderLogin";
+import ContentLogin from './components/ContentLogin';
+import FooterLogin from './components/FooterLogin';
+
+import logo from './assets/images/transportesLogo.png';
+
+class App  extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      sitesLogo: logo,
+    };
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <HeaderLogin state={this.state} />
+        <ContentLogin />
+        <FooterLogin />
+      </Fragment>
+    );
+  }
 }
 
 export default App;

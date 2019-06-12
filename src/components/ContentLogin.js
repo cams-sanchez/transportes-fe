@@ -34,7 +34,7 @@ class ContentLogin extends Component {
   render() {
     return (
       <div className="container-fluid justify-content-center col-xl-4 col-lg-4 col-md-4 div-container">
-        <Form className="form-container" onSubmit={this.handleSubmit} >
+        <Form className="form-container justify-content-center" onSubmit={this.handleSubmit} >
           <FormGroup row>
             <Label for="exampleEmail" sm={10}>Email</Label>
             <Col sm={10}>
@@ -42,18 +42,18 @@ class ContentLogin extends Component {
                 type="email"
                 name="email"
                 id="exampleEmail"
-                placeholder="with a placeholder"
+                placeholder="Ingresa Tu Email"
                 onChange={this.handleChange}
               />
             </Col>
           </FormGroup>
           <FormGroup row>
-            <Label for="examplePassword" sm={10}>Password</Label>
+            <Label for="examplePassword" sm={10}>Contraseña</Label>
             <Col sm={10}>
               <Input
                 type="password"
                 name="password"
-                id="examplePassword" placeholder="password placeholder"
+                id="examplePassword" placeholder="Ingresa Tu Contraseña"
                 onChange={this.handleChange}
               />
             </Col>
@@ -64,7 +64,7 @@ class ContentLogin extends Component {
               Recordar en este dispositivo
             </Label>
           </FormGroup>
-          <Button className="login-button" onClick={this.handleSubmit} >Entrar</Button>
+          <Button className="login-button" onClick={this.handleSubmit} >Entrar A La Plataforma</Button>
         </Form>
       </div>
     );

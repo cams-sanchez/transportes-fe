@@ -17,13 +17,13 @@ class FooterLogin extends Component {
   }
   render() {
     return (
-      <footer>
-        <Nav>
+      <footer className="container-fluid">
+        <Nav className="justify-content-center">
           <NavItem>
-            <NavLink href="#">Acerca De Nosotros</NavLink>
+            <NavLink href="#" className="footer-link">Acerca De Nosotros</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Contacto</NavLink>
+            <NavLink href="#" className="footer-link">Contacto</NavLink>
           </NavItem>
         </Nav>
       </footer>

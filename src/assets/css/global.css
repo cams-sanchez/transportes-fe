@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f8f9fa;
 }
 
 code {
@@ -20,7 +21,11 @@ code {
 
 footer {
   position: fixed;
-  height: 100px;
+  height: 40px;
   bottom: 0;
-  width: 100%;
+}
+
+input {
+  border-radius:10rem !important;
+  padding:1.5rem 1rem;
 }

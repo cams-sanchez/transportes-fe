@@ -1,0 +1,26 @@
+.login-button {
+    margin-top: 30px;
+}
+
+.div-container {
+    background: #fff;
+    border-radius:1rem;
+    border: 1px solid black;
+
+}
+
+.form-container {
+    background: #fff;
+    padding: 30px;
+}
+
+footer {
+    background-color: #606060;
+}
+
+header {
+    padding-bottom: 40px;
+}
+.footer-link, .footer-link:visited, .footer-link:hover {
+    color: white;
+}

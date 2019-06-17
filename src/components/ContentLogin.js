@@ -1,17 +1,12 @@
 import React, {Component} from 'react';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import axios from "axios";
 
 class ContentLogin extends Component {
 
   state = {
     email: '',
     password: '',
-  };
-
-  handleChangeEmail = event => {
-    this.setState({
-        email: event.target.value
-    });
   };
 
   handleChange = event => {
@@ -29,11 +24,17 @@ class ContentLogin extends Component {
     };
 
     console.log("User Info ", user);
+
+    axios.get('https://localhost:30001/users/authenticate')
+      .then(res => {
+        const response = res.data;
+        console.log('Response from Server ',response);
+      })
   };
 
   render() {
     return (
-      <div className="container-fluid justify-content-center col-xl-4 col-lg-4 col-md-4 div-container">
+      <div className="container justify-content-center col-4 border border-dark rounded div-container ">
         <Form className="form-container justify-content-center" onSubmit={this.handleSubmit} >
           <FormGroup row>
             <Label for="exampleEmail" sm={10}>Email</Label>

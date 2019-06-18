@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import appConfig from '../config/apiEndPoints';
+
 import axios from "axios";
 
 class ContentLogin extends Component {
@@ -24,8 +26,9 @@ class ContentLogin extends Component {
     };
 
     console.log("User Info ", user);
-
-    axios.post('http://localhost:30001/users/authenticate', user)
+    let urlApi = appConfig.loginUser ;
+    console.log("URL API ",urlApi);
+    axios.post( urlApi, user)
       .then(res => {
         const response = res.data;
         console.log('Response from Server ',response);

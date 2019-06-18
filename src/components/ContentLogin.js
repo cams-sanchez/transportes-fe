@@ -25,7 +25,7 @@ class ContentLogin extends Component {
 
     console.log("User Info ", user);
 
-    axios.get('https://localhost:30001/users/authenticate')
+    axios.post('http://localhost:30001/users/authenticate', user)
       .then(res => {
         const response = res.data;
         console.log('Response from Server ',response);

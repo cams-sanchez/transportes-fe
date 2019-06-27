@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import appConfig from '../config/apiEndPoints';
+import appConfig from '../../config/apiEndPoints';
 
-import axios from "axios";
+import axios from "axios/index";
 
 class ContentLogin extends Component {
 

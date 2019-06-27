@@ -17,7 +17,7 @@ class FooterLogin extends Component {
   }
   render() {
     return (
-      <footer className="container-fluid">
+      <footer className="container-fluid footerLogin">
         <Nav className="justify-content-center">
           <NavItem>
             <NavLink href="#" className="footer-link">Acerca De Nosotros</NavLink>

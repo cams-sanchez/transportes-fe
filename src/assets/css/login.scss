@@ -12,11 +12,14 @@
     padding: 30px;
 }
 
-footer {
+.footerLogin {
+    position: fixed;
+    height: 40px;
+    bottom: 0;
     background-color: #606060;
 }
 
-header {
+.headerLogin {
     padding-bottom: 40px;
 }
 .footer-link, .footer-link:visited, .footer-link:hover {

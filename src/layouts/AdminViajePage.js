@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
 
-import HeaderLogin from "../components/HeaderLogin";
-import ContentLogin from '../components/ContentLogin';
-import FooterLogin from '../components/FooterLogin';
+import HeaderLogin from "../components/Login/HeaderLogin";
+import ContentLogin from '../components/Login/ContentLogin';
+import FooterLogin from '../components/Login/FooterLogin';
 
 import logo from '../assets/images/LogoTransportesTransparent.png';
 

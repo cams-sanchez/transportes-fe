@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/css/global.css';
-import './assets/css/login.css';
+import './assets/css/global.scss';
+import './assets/css/login.scss';
 
 import './routes/main';
 

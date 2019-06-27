@@ -1,25 +1,14 @@
 import React, {Component, Fragment} from 'react';
 
-import HeaderLogin from "../components/HeaderLogin";
-import ContentLogin from '../components/ContentLogin';
-import FooterLogin from '../components/FooterLogin';
-
-import logo from '../assets/images/transportesLogo.png';
+import Header from '../components/Header';
+import SideBarUser from '../components/Users/SideBarUser';
 
 class AdminUserPage  extends Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      sitesLogo: logo,
-    };
-  }
-
   render() {
     return (
       <Fragment>
-        <HeaderLogin state={this.state} />
-        <ContentLogin />
-        <FooterLogin />
+        <Header />
+        <SideBarUser />
       </Fragment>
     );
   }

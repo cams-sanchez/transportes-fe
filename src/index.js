@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/css/global.scss';
-import './assets/css/login.scss';
+import './assets/scss/reduction.scss'
 
 import './routes/main';
 

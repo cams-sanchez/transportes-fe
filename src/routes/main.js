@@ -1,20 +1,23 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Redirect } from "react-router-dom";
 
-import LogingPage from '../layouts/LoginPage';
-import Dashboard from '../layouts/DasboardPage';
-import AdminUser from '../layouts/AdminUserPage';
-import AdminViaje from '../layouts/AdminViajePage';
+import { EmptyLayout, LayoutRoute } from '../components/Layout';
+import AuthPage from '../pages/AuthPage';
 
 const MainRouter = () => {
   return(
     <BrowserRouter >
     <Switch>
-      <Route path="/login" component={LogingPage} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/user" component={AdminUser} />
-      <Route path="/viaje" component={AdminViaje} />
-      <Redirect from="/" to="/dashboard" />
+      <LayoutRoute
+        exact
+        path="/login"
+        layout={EmptyLayout}
+        component={props => (
+          <AuthPage {...props} />
+        )}
+      />
+
+      <Redirect from="/" to="/login" />
     </Switch>
   </BrowserRouter>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch } from "react-router-dom";
 
 import { EmptyLayout, LayoutRoute } from '../components/Layout';
-import AuthPage from '../pages/AuthPage';
+import Login from '../pages/login/Login';
 
 const LoginRouter = () => {
   return(
@@ -13,7 +13,7 @@ const LoginRouter = () => {
         path="/login"
         layout={EmptyLayout}
         component={props => (
-          <AuthPage {...props} />
+          <Login {...props} />
         )}
       />
     </Switch>

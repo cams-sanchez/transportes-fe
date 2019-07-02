@@ -33,8 +33,8 @@ class ButtonPage extends React.Component {
   render() {
     return (
       <Page
-        className="ButtonPage"
-        title="Buttons"
+        className="ButtoanPage"
+        title="Buttonsa"
         breadcrumbs={[{ name: 'buttons', active: true }]}
       >
         <Row>

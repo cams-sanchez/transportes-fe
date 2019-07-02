@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter, Switch, Redirect } from "react-router-dom";
 import { EmptyLayout, LayoutRoute, MainLayout } from '../components/Layout';
 import ButtonPage from '../pages/ButtonPage';
-import AuthPage from '../pages/AuthPage';
+import Login from '../pages/login/Login';
+import TipoCarga from '../pages/catalogs/TipoCarga';
 
 const MainRouter = () => {
   return(
@@ -13,7 +14,7 @@ const MainRouter = () => {
         path="/login"
         layout={EmptyLayout}
         component={props => (
-          <AuthPage {...props} />
+          <Login {...props} />
         )}
       />
       <LayoutRoute
@@ -21,6 +22,12 @@ const MainRouter = () => {
         path="/buttons"
         layout={MainLayout}
         component={ButtonPage}
+      />
+      <LayoutRoute
+        exact
+        path="/catalogos/tipocarga"
+        layout={MainLayout}
+        component={TipoCarga}
       />
       <Redirect from="/" to="/login" />
     </Switch>

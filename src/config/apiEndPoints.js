@@ -1,10 +1,21 @@
+class ApiEndPoints {
 
-let createApiUrl = (endPoint) => {
-  return process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT + endPoint;
-};
+  createApiUrl(endPoint) {
+    let apiUrl = 'http://localhost:';
+    let apiPort = '30001';
 
-module.exports = {
-  loginUser: () => {
-    return createApiUrl('/users/authenticate');
-  },
-};
+    return apiUrl + apiPort + endPoint;
+  }
+
+  loginUser() {
+    let urlApi = this.createApiUrl('/users/authenticate');
+    console.log("API CALL ", urlApi);
+    return urlApi;
+  }
+
+  getAllTiposDeCarga(){
+    return this.createApiUrl('/catalogs/tiposdecarga');
+  }
+}
+
+export default ApiEndPoints;

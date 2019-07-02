@@ -1,8 +1,8 @@
-import AuthForm from '../components/AuthForm';
+import LoginForm from '../../components/LoginForm';
 import React from 'react';
 import { Card, Col, Row } from 'reactstrap';
 
-class AuthPage extends React.Component {
+class Login extends React.Component {
   render() {
     return (
       <Row
@@ -13,7 +13,7 @@ class AuthPage extends React.Component {
         }}>
         <Col md={6} lg={4}>
           <Card body>
-            <AuthForm />
+            <LoginForm />
           </Card>
         </Col>
       </Row>
@@ -21,4 +21,4 @@ class AuthPage extends React.Component {
   }
 }
 
-export default AuthPage;
+export default Login;

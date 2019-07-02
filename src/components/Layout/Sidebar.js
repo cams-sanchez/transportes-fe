@@ -59,7 +59,6 @@ class Sidebar extends React.Component {
   };
 
   render() {
-    console.log(bem);
     return (
       <aside className={bem.b()}>
         <div className={bem.e('content')}>

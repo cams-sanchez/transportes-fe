@@ -25,7 +25,7 @@ const MainRouter = () => {
       />
       <LayoutRoute
         exact
-        path="/catalogos/tipocarga"
+        path="/catalogos/tiposdecarga"
         layout={MainLayout}
         component={TipoCarga}
       />

@@ -35,7 +35,7 @@ class LoginForm extends Component {
         if(response.success === true) {
           console.log("We got token");
           window.localStorage.setItem('jwt', response.token);
-          this.props.history.push('/catalogos/tipocarga');
+          this.props.history.push('/catalogos/tiposdecarga');
         }
       });
   };

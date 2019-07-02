@@ -16,6 +16,10 @@ class ApiEndPoints {
   getAllTiposDeCarga(){
     return this.createApiUrl('/catalogs/tiposdecarga');
   }
+
+  setNewTipoCarga(){
+    return this.createApiUrl('/catalogs/tiposdecarga/new');
+  }
 }
 
 export default ApiEndPoints;

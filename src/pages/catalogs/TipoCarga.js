@@ -1,6 +1,6 @@
 import Page from '../../components/Page';
 import React, {Component} from 'react';
-import { Button, Card, CardBody, CardHeader, Col, Form, FormGroup, Input, Label, Row, Table } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardBody, CardHeader, Col, Form, FormGroup, Input, Label, Row, Table } from 'reactstrap';
 import { withRouter } from "react-router-dom";
 import axios from 'axios/index';
 import ApiEndPoints from '../../config/apiEndPoints';
@@ -11,6 +11,8 @@ class TipoCarga extends Component{
     nombre:'',
     unidadMetrica:'',
     descripcion:'',
+    openModal: false,
+    currentItem:{},
   };
 
   apiCall = new ApiEndPoints();
@@ -80,18 +82,59 @@ class TipoCarga extends Component{
     this.getInfoFromAp();
   }
 
+  renderModal = (item) =>{
+    this.setState({
+      openModal:true,
+      currentItem:item,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      openModal:false,
+    });
+  };
+
+  testFunction () {
+    console.log("TESTHING", this);
+  }
+
   render() {
+
+    const {currentItem:item, openModal} = this.state;
+
     return (
       <Page
         title=""
         breadcrumbs={[{ name: 'catalogs/tipodecarga', active: true }]}
         className="CatalogsTipoDeCargaPage"
       >
+
+        <Modal isOpen={openModal}>
+          <ModalHeader >Editar Tipo De Carga</ModalHeader>
+          <ModalBody>
+            ID {item._id}<br/>
+            Nombre {item.nombre}<br/>
+            UNIDad{item.unidadMetrica}<br/>
+            Desc{item.descripcion}<br/>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.closeModal}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={function(){
+              console.log("Dentro De funcion", this);
+              this.testFunction();
+            }.bind(this)}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
+
+
+
+
         <Row>
           <Col>
             <Card className="mb-3">
               <CardHeader>Nuevo Tipo de Carga</CardHeader>
-              <CardBody>
+              <CardBody >
               <Row>
                 <Form onSubmit={this.handleSubmit} className="wholeWidth">
                   <Row form>
@@ -153,6 +196,7 @@ class TipoCarga extends Component{
                         <td>{item.nombre}</td>
                         <td>{item.unidadMetrica}</td>
                         <td>{item.descripcion}</td>
+                        <td><Button color="secondary" onClick={()=>this.renderModal(item)}>Editar</Button></td>
                       </tr>
                     ))
                   }

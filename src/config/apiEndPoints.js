@@ -13,12 +13,21 @@ class ApiEndPoints {
     return urlApi;
   }
 
+  userInfoFromToken() {
+    let urlApi = this.createApiUrl('/users/infoFromToken');
+    return urlApi;
+  }
+
   getAllTiposDeCarga(){
     return this.createApiUrl('/catalogs/tiposdecarga');
   }
 
   setNewTipoCarga(){
     return this.createApiUrl('/catalogs/tiposdecarga/new');
+  }
+
+  editTipoCarga(){
+    return this.createApiUrl('/catalogs/tiposdecarga/update');
   }
 }
 

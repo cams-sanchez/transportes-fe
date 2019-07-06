@@ -1,8 +1,8 @@
-import logo200Image from '../assets/images/logo/logoTransportes.png';
+import logo200Image from '../../assets/images/logo/logoTransportes.png';
 import React, {Component} from 'react';
 import { withRouter } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
-import ApiEndPoints from '../config/apiEndPoints';
+import ApiEndPoints from '../../config/apiEndPoints';
 import axios from 'axios/index';
 
 class LoginForm extends Component {

@@ -1,4 +1,4 @@
-import LoginForm from '../../components/LoginForm';
+import LoginForm from '../../components/Forms/LoginForm';
 import React from 'react';
 import { Card, Col, Row } from 'reactstrap';
 

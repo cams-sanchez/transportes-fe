@@ -1,11 +1,13 @@
 import Page from '../../components/Page';
 import React, {Component} from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardBody, CardHeader, Col, Form, FormGroup, Input, Label, Row, Table } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Form, FormGroup, Input, Label, Row, Table } from 'reactstrap';
 import { withRouter } from "react-router-dom";
 import axios from 'axios/index';
 import ApiEndPoints from '../../config/apiEndPoints';
-
+import TipoDeCargaModal from '../../components/Modals/TipoDeCargaModal';
+import EditTipoDeCargaForm from '../../components/Forms/EditTipoDeCargaForm';
 class TipoCarga extends Component{
+
   state = {
     tipoDeCarga: [],
     nombre:'',
@@ -55,9 +57,8 @@ class TipoCarga extends Component{
       unidadMetrica:this.state.unidadMetrica,
       descripcion:this.state.descripcion
     };
-    let apicall = new ApiEndPoints();
     console.log("newTipoCarga Info ", newTipoCarga);
-    let urlApi = apicall.setNewTipoCarga();
+    let urlApi = this.apiCall.setNewTipoCarga();
 
     let config = {
       headers: {
@@ -89,46 +90,16 @@ class TipoCarga extends Component{
     });
   };
 
-  closeModal = () => {
-    this.setState({
-      openModal:false,
-    });
-  };
-
-  testFunction () {
-    console.log("TESTHING", this);
-  }
-
   render() {
 
     const {currentItem:item, openModal} = this.state;
-
     return (
       <Page
         title=""
         breadcrumbs={[{ name: 'catalogs/tipodecarga', active: true }]}
         className="CatalogsTipoDeCargaPage"
       >
-
-        <Modal isOpen={openModal}>
-          <ModalHeader >Editar Tipo De Carga</ModalHeader>
-          <ModalBody>
-            ID {item._id}<br/>
-            Nombre {item.nombre}<br/>
-            UNIDad{item.unidadMetrica}<br/>
-            Desc{item.descripcion}<br/>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.closeModal}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={function(){
-              console.log("Dentro De funcion", this);
-              this.testFunction();
-            }.bind(this)}>Cancel</Button>
-          </ModalFooter>
-        </Modal>
-
-
-
+        <TipoDeCargaModal currentItem={item} openModal = {openModal}/>
 
         <Row>
           <Col>
@@ -169,6 +140,7 @@ class TipoCarga extends Component{
                     </Col>
                   </Row>
                 </Form>
+                <EditTipoDeCargaForm/>
               </Row>
               </CardBody>
             </Card>

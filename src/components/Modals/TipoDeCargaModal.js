@@ -1,39 +1,26 @@
 import React, {Component} from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import EditTipoDeCargaForm from '../Forms/EditTipoDeCargaForm';
+import allActions from '../../redux/actions';
+import { connect } from 'react-redux';
 
 class TipoDeCargaModal extends Component {
 
-  state = {
-    openModal: false,
-    currentItem: {},
-  };
-
   closeModal = () => {
-    this.setState({
-      openModal:false,
-    });
+    this.props.CloseModal();
   };
-
-  componentWillReceiveProps (nextProps, nextContext) {
-    this.setState({
-      openModal:nextProps.openModal,
-      currentItem:nextProps.currentItem
-    });
-  }
 
   testFunction () {
     console.log("TESTHING", this);
   }
 
   render () {
-
-    const {currentItem, openModal} = this.state;
+    console.log("IN MODAL", this.props.currentItem);
     return (
-      <Modal isOpen={openModal}>
+      <Modal isOpen={this.props.modalIsOpen}>
         <ModalHeader >Editar Tipo De Carga</ModalHeader>
         <ModalBody>
-          <EditTipoDeCargaForm currentItem={currentItem} openModal={openModal} closeModal={this.closeModal}/>
+          <EditTipoDeCargaForm currentItem={this.props.currentItem} />
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={this.closeModal}>Cerrar</Button>
@@ -48,4 +35,16 @@ class TipoDeCargaModal extends Component {
   }
 }
 
-export default TipoDeCargaModal;
+const mapStateToProps= (reduxState, ownProps) => {
+  return {
+    modalIsOpen: reduxState.tipoDeCargaReducer.modalIsOpen,
+  }
+};
+
+const mapDispatchToProps= (dispath) =>{
+  return {
+    CloseModal: ()=>{dispath(allActions.tipoDeCargaAction.closeModal())},
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TipoDeCargaModal);

@@ -1,20 +1,18 @@
 import Page from '../../components/Page';
 import React, {Component} from 'react';
-import { Button, Card, CardBody, CardHeader, Col, Form, FormGroup, Input, Label, Row, Table } from 'reactstrap';
+import {connect} from 'react-redux';
+import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import { withRouter } from "react-router-dom";
 import axios from 'axios/index';
 import ApiEndPoints from '../../config/apiEndPoints';
 import TipoDeCargaModal from '../../components/Modals/TipoDeCargaModal';
-import EditTipoDeCargaForm from '../../components/Forms/EditTipoDeCargaForm';
+import NewTipoDeCargaForm from '../../components/Forms/NewTipoDeCargaForm';
+import allActions from '../../redux/actions';
+
 class TipoCarga extends Component{
 
   state = {
     tipoDeCarga: [],
-    nombre:'',
-    unidadMetrica:'',
-    descripcion:'',
-    openModal: false,
-    currentItem:{},
   };
 
   apiCall = new ApiEndPoints();
@@ -42,64 +40,24 @@ class TipoCarga extends Component{
       }
     })
   }
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-    console.log(event.target.name);
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const newTipoCarga = {
-      nombre:this.state.nombre,
-      unidadMetrica:this.state.unidadMetrica,
-      descripcion:this.state.descripcion
-    };
-    console.log("newTipoCarga Info ", newTipoCarga);
-    let urlApi = this.apiCall.setNewTipoCarga();
-
-    let config = {
-      headers: {
-        'Authorization': 'Bearer ' + window.localStorage.getItem('jwt')
-      }
-    };
-
-    axios.post(
-      urlApi,
-      newTipoCarga,
-      config
-    ).then(res => {
-        const response = res.data;
-        if(response.success === true) {
-          console.log("We Saved this");
-          this.getInfoFromAp();
-        }
-      });
-  };
 
   componentDidMount () {
     this.getInfoFromAp();
   }
 
   renderModal = (item) =>{
-    this.setState({
-      openModal:true,
-      currentItem:item,
-    });
+    this.props.OpenModal();
+    this.props.SetCurrentItem(item);
   };
 
   render() {
-
-    const {currentItem:item, openModal} = this.state;
     return (
       <Page
         title=""
         breadcrumbs={[{ name: 'catalogs/tipodecarga', active: true }]}
         className="CatalogsTipoDeCargaPage"
       >
-        <TipoDeCargaModal currentItem={item} openModal = {openModal}/>
+        <TipoDeCargaModal currentItem={this.props.currentItem}/>
 
         <Row>
           <Col>
@@ -107,45 +65,13 @@ class TipoCarga extends Component{
               <CardHeader>Nuevo Tipo de Carga</CardHeader>
               <CardBody >
               <Row>
-                <Form onSubmit={this.handleSubmit} className="wholeWidth">
-                  <Row form>
-                    <Col>
-                      <FormGroup>
-                        <Label for="Nombre">Nombre</Label>
-                        <Input type="text" name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange} />
-                      </FormGroup>
-                    </Col>
-                    <Col>
-                      <FormGroup>
-                        <Label for="Unidad Métrica">Unidad Métrica</Label>
-                        <Input type="text" name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
-                      </FormGroup>
-                    </Col>
-                    <Col>
-                      <FormGroup>
-                        <Label for="Descripcion">Descripcion</Label>
-                        <Input type="text" name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <Button
-                        size="lg"
-                        className="bg-gradient-theme-left border-0 centerButton"
-                        block
-                        onClick={this.handleSubmit}>
-                        Guardar
-                      </Button>
-                    </Col>
-                  </Row>
-                </Form>
-                <EditTipoDeCargaForm/>
+                <NewTipoDeCargaForm/>
               </Row>
               </CardBody>
             </Card>
           </Col>
         </Row>
+
         <Row>
           <Col>
             <Card className="mb-3">
@@ -184,4 +110,17 @@ class TipoCarga extends Component{
 
 }
 
-export default withRouter(TipoCarga);
+const mapStateToProps= (reduxState, ownProps) => {
+  return {
+    currentItem: reduxState.tipoDeCargaReducer.currentItem,
+  }
+};
+
+const mapDispatchToProps= (dispath) =>{
+  return {
+    SetCurrentItem: (currentItem)=> {dispath(allActions.tipoDeCargaAction.setCurrentItem(currentItem))},
+    OpenModal: ()=> {dispath(allActions.tipoDeCargaAction.openModal())},
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TipoCarga));

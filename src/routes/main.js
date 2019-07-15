@@ -86,7 +86,7 @@ class MainRouter extends React.Component {
             )}
           />
           {userPermissions && this.securedRoutes()}
-          {!userPermissions && <Spinner color="info" className="centerSpinner"/>}
+          {/*!userPermissions && <div>Loading</div>*/}
           <Redirect exact from="/" to="/login"/>
         </Switch>
       </BrowserRouter>

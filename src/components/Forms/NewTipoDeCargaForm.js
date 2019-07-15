@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import ApiEndPoints from '../../config/apiEndPoints';
 import axios from 'axios';
-import allActions from '../../redux/actions';
-import { connect } from 'react-redux';
-class EditTipoDeCargaForm extends Component {
+class NewTipoDeCargaForm extends Component {
 
   state = {
     _id:'',
@@ -22,11 +20,10 @@ class EditTipoDeCargaForm extends Component {
     console.log(event.target.name);
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
 
-    console.log("Save Event");
-    /*const tipoCarga = {
+    const tipoCarga = {
       _id: this.props.currentItem._id,
       nombre:this.nombre,
       unidadMetrica:this.unidadMetrica,
@@ -51,21 +48,10 @@ class EditTipoDeCargaForm extends Component {
         console.log("We Saved this");
         this.props.closeModal();
       }
-    });*/
-    this.props.CloseModal();
-  };
-
-  handleDeleteSubmit = (event) => {
-    console.log("Delete Event");
-    this.props.CloseModal();
+    });
   };
 
   render() {
-
-    let currentItem = {};
-    if(this.props.currentItem) {
-      currentItem = this.props.currentItem;
-    }
 
     return (
       <Form onSubmit={this.handleSubmit.bind(this)} className="wholeWidth">
@@ -73,19 +59,19 @@ class EditTipoDeCargaForm extends Component {
           <Col>
             <FormGroup>
               <Label for="Nombre">Nombre</Label>
-              <Input type="text" value={currentItem.nombre} name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
+              <Input type="text" name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Unidad Métrica">Unidad Métrica</Label>
-              <Input type="text" value={currentItem.unidadMetrica} name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
+              <Input type="text" name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Descripcion">Descripcion</Label>
-              <Input type="text" value={currentItem.descripcion} name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
+              <Input type="text" name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
             </FormGroup>
           </Col>
         </Row>
@@ -99,25 +85,10 @@ class EditTipoDeCargaForm extends Component {
               Guardar
             </Button>
           </Col>
-          <Col>
-            <Button
-              size="lg"
-              className="bg-gradient-theme-left border-0 centerButton"
-              block
-              onClick={this.handleDeleteSubmit.bind(this)}>
-              Borrar
-            </Button>
-          </Col>
         </Row>
       </Form>
     );
   }
 }
 
-const mapDispatchToProps= (dispath) =>{
-  return {
-    CloseModal: ()=>{dispath(allActions.tipoDeCargaAction.closeModal())},
-  }
-};
-
-export default connect(null, mapDispatchToProps)(EditTipoDeCargaForm)
+export default NewTipoDeCargaForm

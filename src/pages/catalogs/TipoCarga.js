@@ -10,16 +10,12 @@ import TiposDeCargaHelper from '../../helpers/TiposDeCargaHelper';
 
 class TipoCarga extends Component{
 
-  state = {
-    tipoDeCarga: [],
-  };
-
   helper = new TiposDeCargaHelper();
 
   getData = async () => {
     await this.helper.getTiposDeCarga();
     if (Array.isArray(this.helper.tiposDeCarga)) {
-      this.setState({tipoDeCarga: this.helper.tiposDeCarga});
+      this.props.SetAllTiposDeCarga(this.helper.tiposDeCarga);
     } else if(this.helper.is401Redirect === true) {
       this.props.history.push('/login');
     }
@@ -72,7 +68,7 @@ class TipoCarga extends Component{
                   </thead>
                   <tbody>
                   {
-                    this.state.tipoDeCarga.map((item, idx) => (
+                    this.props.allTiposDeCarga.map((item, idx) => (
                       <tr key={idx}>
                         <th scope="row">{item._id}</th>
                         <td>{item.nombre}</td>
@@ -91,19 +87,20 @@ class TipoCarga extends Component{
       </Page>
     );
   }
-
 }
 
 const mapStateToProps= (reduxState, ownProps) => {
   return {
     currentItem: reduxState.tipoDeCargaReducer.currentItem,
+    allTiposDeCarga: reduxState.tipoDeCargaReducer.allTiposDeCarga
   }
 };
 
 const mapDispatchToProps= (dispath) =>{
   return {
-    SetCurrentItem: (currentItem)=> {dispath(allActions.tipoDeCargaAction.setCurrentItem(currentItem))},
-    OpenModal: ()=> {dispath(allActions.tipoDeCargaAction.openModal())},
+    SetCurrentItem: (currentItem)=> {dispath(allActions.TipoDeCargaAction.setCurrentItem(currentItem))},
+    SetAllTiposDeCarga: (allTiposDeCarga)=> {dispath(allActions.TipoDeCargaAction.setAllTiposDeCarga(allTiposDeCarga))},
+    OpenModal: ()=> {dispath(allActions.TipoDeCargaAction.openModal())},
   }
 };
 

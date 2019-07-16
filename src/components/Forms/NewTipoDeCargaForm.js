@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
+import { withRouter } from "react-router-dom";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
-import ApiEndPoints from '../../config/apiEndPoints';
-//import axios from 'axios';
-import CatalogHelper from '../../helpers/AxiosHelper';
-
+import TiposDeCargaHelper from '../../helpers/TiposDeCargaHelper';
+import allActions from '../../redux/actions';
+import { connect } from 'react-redux';
 
 class NewTipoDeCargaForm extends Component {
 
@@ -13,8 +13,7 @@ class NewTipoDeCargaForm extends Component {
     descripcion:'',
   };
 
-  //apiCall = new ApiEndPoints();
-  catalogHelper = new CatalogHelper();
+  catalogHelper = new TiposDeCargaHelper();
 
   handleChange = (event) => {
     this.setState({
@@ -23,7 +22,7 @@ class NewTipoDeCargaForm extends Component {
     console.log(event.target.value);
   };
 
-  handleSubmit = event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
     const newTipoCarga = {
@@ -33,55 +32,38 @@ class NewTipoDeCargaForm extends Component {
     };
     console.log("newTipoCarga Info ", newTipoCarga);
 
-    let successExecution = this.catalogHelper.postTipoDeCarga(newTipoCarga);
-
-    if(successExecution === true) {
-      this.catalogHelper.getTiposDeCarga();
+    if(await this.catalogHelper.postTipoDeCarga(newTipoCarga) === true) {
+      if (await this.catalogHelper.getTiposDeCarga() === true) {
+        this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
+      }
+    } else if(this.helper.is401Redirect === true) {
+      this.props.history.push('/login');
     }
 
-    /*let urlApi = this.apiCall.setNewTipoCarga();
-
-    let config = {
-      headers: {
-        'Authorization': 'Bearer ' + window.localStorage.getItem('jwt')
-      }
-    };
-
-    axios.post(
-      urlApi,
-      newTipoCarga,
-      config
-    ).then(res => {
-      const response = res.data;
-      if(response.success === true) {
-        console.log("We Saved this");
-        this.getInfoFromAp();
-      }
-    });*/
+    this.inputNombre.value = '';
   };
 
 
   render() {
-
     return (
       <Form onSubmit={this.handleSubmit.bind(this)} className="wholeWidth">
         <Row form>
           <Col>
             <FormGroup>
               <Label for="Nombre">Nombre</Label>
-              <Input type="text" name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
+              <Input ref={(el) => this.inputNombre= el} type="text" name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Unidad Métrica">Unidad Métrica</Label>
-              <Input type="text" name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
+              <Input id="unidadMetrica" type="text" name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Descripcion">Descripcion</Label>
-              <Input type="text" name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
+              <Input id="descripcion" type="text" name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
             </FormGroup>
           </Col>
         </Row>
@@ -101,4 +83,10 @@ class NewTipoDeCargaForm extends Component {
   }
 }
 
-export default NewTipoDeCargaForm
+const mapDispatchToProps= (dispath) =>{
+  return {
+    SetAllTiposDeCarga: (allTiposDeCarga)=> {dispath(allActions.TipoDeCargaAction.setAllTiposDeCarga(allTiposDeCarga))},
+  }
+};
+
+export default connect(null, mapDispatchToProps)(withRouter(NewTipoDeCargaForm));

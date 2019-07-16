@@ -43,7 +43,7 @@ const mapStateToProps= (reduxState, ownProps) => {
 
 const mapDispatchToProps= (dispath) =>{
   return {
-    CloseModal: ()=>{dispath(allActions.tipoDeCargaAction.closeModal())},
+    CloseModal: ()=>{dispath(allActions.TipoDeCargaAction.closeModal())},
   }
 };
 

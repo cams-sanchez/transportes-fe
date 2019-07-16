@@ -1,7 +1,7 @@
-import tipoDeCargaAction from './tipoDeCargaActions';
+import TipoDeCargaAction from './TipoDeCargaActions';
 
 const allActions = {
-  tipoDeCargaAction: tipoDeCargaAction,
+  TipoDeCargaAction: TipoDeCargaAction,
 };
 
 export default allActions

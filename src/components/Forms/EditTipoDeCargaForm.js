@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import { withRouter } from "react-router-dom";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
-import ApiEndPoints from '../../config/apiEndPoints';
-import axios from 'axios';
 import allActions from '../../redux/actions';
 import { connect } from 'react-redux';
+import TiposDeCargaHelper from '../../helpers/TiposDeCargaHelper';
+
 class EditTipoDeCargaForm extends Component {
 
   state = {
@@ -13,7 +14,7 @@ class EditTipoDeCargaForm extends Component {
     descripcion:'',
   };
 
-  apiCall = new ApiEndPoints();
+  catalogHelper = new TiposDeCargaHelper();
 
   handleChange = (event) => {
     this.setState({
@@ -22,53 +23,53 @@ class EditTipoDeCargaForm extends Component {
     console.log(event.target.name);
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log("Save Event");
-    /*const tipoCarga = {
+    const tipoCarga = {
       _id: this.props.currentItem._id,
-      nombre:this.nombre,
-      unidadMetrica:this.unidadMetrica,
-      descripcion:this.descripcion
-    };
-    console.log("tipoCarga Info ", tipoCarga);
-    let urlApi = this.apiCall.setNewTipoCarga();
-
-    let config = {
-      headers: {
-        'Authorization': 'Bearer ' + window.localStorage.getItem('jwt')
-      }
+      nombre:this.state.nombre,
+      unidadMetrica:this.state.unidadMetrica,
+      descripcion:this.state.descripcion
     };
 
-    axios.put(
-      urlApi,
-      tipoCarga,
-      config
-    ).then(res => {
-      const response = res.data;
-      if(response.success === true) {
-        console.log("We Saved this");
-        this.props.closeModal();
+    if(await this.catalogHelper.putTipoDeCarga(tipoCarga) === true) {
+      if (await this.catalogHelper.getTiposDeCarga() === true) {
+        this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
       }
-    });*/
-    this.props.CloseModal();
+      this.props.CloseModal();
+    } else if(this.helper.is401Redirect === true) {
+      this.props.history.push('/login');
+    }
   };
 
-  handleDeleteSubmit = (event) => {
-    console.log("Delete Event");
-    this.props.CloseModal();
+  handleDeleteSubmit = async (event) => {
+    event.preventDefault();
+
+    const tipoCarga = {
+      _id: this.props.currentItem._id,
+    };
+
+    console.log("Delete Event", tipoCarga);
+    if(await this.catalogHelper.deleteTipoDeCarga(tipoCarga) === true) {
+      if (await this.catalogHelper.getTiposDeCarga() === true) {
+        this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
+      }
+      this.props.CloseModal();
+    } else if(this.catalogHelper.is401Redirect === true) {
+      console.log("Redirectiong");
+      // this.props.history.push('/login');
+    }
   };
 
   render() {
-
     let currentItem = {};
+
     if(this.props.currentItem) {
       currentItem = this.props.currentItem;
     }
 
     return (
-      <Form onSubmit={this.handleSubmit.bind(this)} className="wholeWidth">
+      <Form onSubmit={this.handleSubmit} className="wholeWidth">
         <Row form>
           <Col>
             <FormGroup>
@@ -95,8 +96,8 @@ class EditTipoDeCargaForm extends Component {
               size="lg"
               className="bg-gradient-theme-left border-0 centerButton"
               block
-              onClick={this.handleSubmit.bind(this)}>
-              Guardar
+              onClick={this.handleSubmit}>
+              Editar
             </Button>
           </Col>
           <Col>
@@ -104,7 +105,7 @@ class EditTipoDeCargaForm extends Component {
               size="lg"
               className="bg-gradient-theme-left border-0 centerButton"
               block
-              onClick={this.handleDeleteSubmit.bind(this)}>
+              onClick={this.handleDeleteSubmit}>
               Borrar
             </Button>
           </Col>
@@ -116,8 +117,9 @@ class EditTipoDeCargaForm extends Component {
 
 const mapDispatchToProps= (dispath) =>{
   return {
-    CloseModal: ()=>{dispath(allActions.tipoDeCargaAction.closeModal())},
+    CloseModal: ()=>{dispath(allActions.TipoDeCargaAction.closeModal())},
+    SetAllTiposDeCarga: (allTiposDeCarga)=> {dispath(allActions.TipoDeCargaAction.setAllTiposDeCarga(allTiposDeCarga))},
   }
 };
 
-export default connect(null, mapDispatchToProps)(EditTipoDeCargaForm)
+export default connect(null, mapDispatchToProps)(withRouter(EditTipoDeCargaForm));

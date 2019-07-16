@@ -29,6 +29,10 @@ class ApiEndPoints {
   editTipoCarga(){
     return this.createApiUrl('/catalogs/tiposdecarga/update');
   }
+
+  deleteTipoCarga(){
+    return this.createApiUrl('/catalogs/tiposdecarga/delete');
+  }
 }
 
 export default ApiEndPoints;

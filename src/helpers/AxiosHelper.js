@@ -24,17 +24,9 @@ class AxiosHelper {
     this.tokenBearer = localStorage.getItem('jwt');
   };
 
-  checkResponse = (response) => {
-    console.log("In Check Response", response);
-    switch (response.status) {
-      case 200:
-        return true;
-      default:
-        if (typeof response.response !== 'undefined' && response.response.status === 401) {
-          console.log("We got 401");
-          this.is401Redirect = true;
-        }
-        return false;
+  check401Error = (error) => {
+    if(error.response.status === 401){
+      this.is401Redirect = true;
     }
   };
 }

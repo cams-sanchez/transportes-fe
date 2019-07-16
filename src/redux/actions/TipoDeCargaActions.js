@@ -1,5 +1,5 @@
 
-const tipoDeCargaActions = {
+const TipoDeCargaActions = {
   openModal: () =>{
     return {
       type:'OpenModal',
@@ -16,12 +16,18 @@ const tipoDeCargaActions = {
       payload: currentItem,
     }
   },
-  getCurrentItem: () => {
+  getAllItems: () => {
     return {
-      type:'GetCurrentItem'
+      type:'GetAllItems'
+    }
+  },
+  setAllTiposDeCarga: (allTiposDeCarga) => {
+    return {
+      type:'SetAllTiposDeCarga',
+      payload: allTiposDeCarga,
     }
   },
 };
 
-export default tipoDeCargaActions;
+export default TipoDeCargaActions;
 

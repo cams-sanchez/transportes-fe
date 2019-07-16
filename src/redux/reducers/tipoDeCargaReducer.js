@@ -2,7 +2,7 @@
 const initialState = {
   modalIsOpen:false,
   currentItem: {},
-  tipoDeCarga: [],
+  allTiposDeCarga: [],
   nombre:'',
   unidadMetrica:'',
   descripcion:'',
@@ -25,9 +25,14 @@ const tipoDeCargaReducer = (state = initialState, action) => {
         ...state,
         currentItem: action.payload,
       };
-    case 'GetCurrentItem':
+    case 'GetAllItems':
       return {
         ...state,
+      };
+    case 'SetAllTiposDeCarga':
+      return {
+        ...state,
+        allTiposDeCarga:action.payload,
       };
     default:
       return state;

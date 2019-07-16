@@ -13,35 +13,70 @@ class TiposDeCargaHelper extends AxiosHelper {
   postTipoDeCarga = async (newTipoCarga) => {
     let urlApi = this.apiUrlGenerator.setNewTipoCarga();
 
-    let response = await axios.post(
+    return await axios.post(
       urlApi,
       newTipoCarga,
       this.headerConfiguration
-    );
-
-    return this.checkResponse(response);
+    ).then(res => {
+      if(res.data.success === true) {
+        return true;
+      }
+    }).catch(error => {
+        this.check401Error(error);
+        return false;
+    });
   };
 
   getTiposDeCarga = async () => {
     let apiCall = this.apiUrlGenerator.getAllTiposDeCarga();
-    console.log("In Method", apiCall);
-    console.log("Header Config", this.headerConfiguration);
-    await axios.get(
+    return await axios.get(
       apiCall,
       this.headerConfiguration,
     ).then( response => {
       if(response.data.success === true) {
         this.tiposDeCarga = response.data.data;
+        return true;
       }
-      console.log("RESPONSE",response.data);
-      return true;
     }).catch(error => {
-      console.log('ERROR RESPPNSE There was an error ', error);
-      if(error.response.status === 401){
-        console.log("UnAuthorized Token");
-        this.is401Redirect = true;
-        return false;
+      this.check401Error(error);
+      return false;
+    });
+  };
+
+  putTipoDeCarga = async(tipoDeCarga) =>{
+    let urlApi = this.apiUrlGenerator.editTipoCarga();
+
+    return await axios.put(
+      urlApi,
+      tipoDeCarga,
+      this.headerConfiguration
+    ).then(res => {
+      if(res.data.success === true) {
+        return true;
       }
+    }).catch(error => {
+      this.check401Error(error);
+      return false;
+    });
+  };
+
+  deleteTipoDeCarga = async(tipoDeCarga) =>{
+    let urlApi = this.apiUrlGenerator.deleteTipoCarga();
+    console.log("Item To Delete ", tipoDeCarga, this.headerConfiguration);
+    return await axios({
+      url:urlApi,
+      method:'delete',
+      data : tipoDeCarga,
+      headers: {
+        'Authorization': 'Bearer ' + this.tokenBearer,
+      }
+    }).then(res => {
+      if(res.data.success === true) {
+        return true;
+      }
+    }).catch(error => {
+      this.check401Error(error);
+      return false;
     });
   };
 }

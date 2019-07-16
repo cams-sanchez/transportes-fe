@@ -1,36 +1,45 @@
 import React, {Component} from 'react';
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import ApiEndPoints from '../../config/apiEndPoints';
-import axios from 'axios';
+//import axios from 'axios';
+import CatalogHelper from '../../helpers/AxiosHelper';
+
+
 class NewTipoDeCargaForm extends Component {
 
   state = {
-    _id:'',
     nombre:'',
     unidadMetrica:'',
     descripcion:'',
   };
 
-  apiCall = new ApiEndPoints();
+  //apiCall = new ApiEndPoints();
+  catalogHelper = new CatalogHelper();
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(event.target.name);
+    console.log(event.target.value);
   };
 
   handleSubmit = event => {
     event.preventDefault();
 
-    const tipoCarga = {
-      _id: this.props.currentItem._id,
-      nombre:this.nombre,
-      unidadMetrica:this.unidadMetrica,
-      descripcion:this.descripcion
+    const newTipoCarga = {
+      nombre:this.state.nombre,
+      unidadMetrica:this.state.unidadMetrica,
+      descripcion:this.state.descripcion
     };
-    console.log("tipoCarga Info ", tipoCarga);
-    let urlApi = this.apiCall.setNewTipoCarga();
+    console.log("newTipoCarga Info ", newTipoCarga);
+
+    let successExecution = this.catalogHelper.postTipoDeCarga(newTipoCarga);
+
+    if(successExecution === true) {
+      this.catalogHelper.getTiposDeCarga();
+    }
+
+    /*let urlApi = this.apiCall.setNewTipoCarga();
 
     let config = {
       headers: {
@@ -38,18 +47,19 @@ class NewTipoDeCargaForm extends Component {
       }
     };
 
-    axios.put(
+    axios.post(
       urlApi,
-      tipoCarga,
+      newTipoCarga,
       config
     ).then(res => {
       const response = res.data;
       if(response.success === true) {
         console.log("We Saved this");
-        this.props.closeModal();
+        this.getInfoFromAp();
       }
-    });
+    });*/
   };
+
 
   render() {
 

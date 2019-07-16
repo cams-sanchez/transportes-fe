@@ -3,11 +3,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import { withRouter } from "react-router-dom";
-import axios from 'axios/index';
-import ApiEndPoints from '../../config/apiEndPoints';
 import TipoDeCargaModal from '../../components/Modals/TipoDeCargaModal';
 import NewTipoDeCargaForm from '../../components/Forms/NewTipoDeCargaForm';
 import allActions from '../../redux/actions';
+import TiposDeCargaHelper from '../../helpers/TiposDeCargaHelper';
 
 class TipoCarga extends Component{
 
@@ -15,34 +14,19 @@ class TipoCarga extends Component{
     tipoDeCarga: [],
   };
 
-  apiCall = new ApiEndPoints();
+  helper = new TiposDeCargaHelper();
 
-  getInfoFromAp() {
-    let apiCall = this.apiCall.getAllTiposDeCarga();
-    let config = {
-      headers: {
-        'Authorization': 'Bearer ' + window.localStorage.getItem('jwt')
-      }
-    };
-    axios.get(
-      apiCall,
-      config,
-    ).then( response => {
-      if(response.data.success === true) {
-        this.setState({tipoDeCarga: response.data.data})
-      }
-      console.log(response.data);
-    }).catch(error => {
-      console.log('There was an error ', error);
-      if(error.response.status === 401){
-        console.log("UnAuthorized Token");
-        this.props.history.push('/login');
-      }
-    })
-  }
+  getData = async () => {
+    await this.helper.getTiposDeCarga();
+    if (Array.isArray(this.helper.tiposDeCarga)) {
+      this.setState({tipoDeCarga: this.helper.tiposDeCarga});
+    } else if(this.helper.is401Redirect === true) {
+      this.props.history.push('/login');
+    }
+  };
 
   componentDidMount () {
-    this.getInfoFromAp();
+    this.getData();
   }
 
   renderModal = (item) =>{

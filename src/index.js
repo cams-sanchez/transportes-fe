@@ -1,18 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/css/global.scss';
-import './assets/css/login.scss';
+import './assets/scss/reduction.scss'
 
 import './routes/main';
 
 import * as serviceWorker from './serviceWorker';
 import MainRouter from './routes/main';
 
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import allReducers from '../src/redux/reducers';
+
+
+const store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 ReactDOM.render(
-  <MainRouter/>,
+  <Provider store={store}>
+    <MainRouter/>
+  </Provider>,
   document.getElementById("root")
 );
 

@@ -7,7 +7,7 @@ class ApiEndPoints {
     let apiUrl = apiHost + apiPort;
 
     console.log("PRocess Env Vars", process.env);
-    if(process.env.USE_PROD_URL === true || process.env.REACT_APP_USE_PROD_URL === true) {
+    if(process.env.REACT_APP_USE_PROD_URL === "true") {
       console.log("Seems we're in prod going to use Prod URL");
       apiUrl = prodUrl;
     }

@@ -74,19 +74,19 @@ class EditTipoDeCargaForm extends Component {
           <Col>
             <FormGroup>
               <Label for="Nombre">Nombre</Label>
-              <Input type="text" value={currentItem.nombre} name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
+              <Input type="text" defaultValue={currentItem.nombre} name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Unidad Métrica">Unidad Métrica</Label>
-              <Input type="text" value={currentItem.unidadMetrica} name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
+              <Input type="text" defaultValue={currentItem.unidadMetrica} name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Descripcion">Descripcion</Label>
-              <Input type="text" value={currentItem.descripcion} name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
+              <Input type="text" defaultValue={currentItem.descripcion} name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
             </FormGroup>
           </Col>
         </Row>

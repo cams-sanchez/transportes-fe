@@ -30,6 +30,14 @@ class NewTipoDeCargaForm extends Component {
       unidadMetrica:this.state.unidadMetrica,
       descripcion:this.state.descripcion
     };
+
+    //reseting form values
+    this.setState({
+      nombre:'',
+      unidadMetrica:'',
+      descripcion:'',
+    });
+
     console.log("newTipoCarga Info ", newTipoCarga);
 
     if(await this.catalogHelper.postTipoDeCarga(newTipoCarga) === true) {
@@ -39,31 +47,28 @@ class NewTipoDeCargaForm extends Component {
     } else if(this.helper.is401Redirect === true) {
       this.props.history.push('/login');
     }
-
-    this.inputNombre.value = '';
   };
-
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit.bind(this)} className="wholeWidth">
+      <Form onSubmit={this.handleSubmit} className="wholeWidth">
         <Row form>
           <Col>
             <FormGroup>
               <Label for="Nombre">Nombre</Label>
-              <Input ref={(el) => this.inputNombre= el} type="text" name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
+              <Input value={this.state.nombre} type="text" name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Unidad Métrica">Unidad Métrica</Label>
-              <Input id="unidadMetrica" type="text" name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
+              <Input value={this.state.unidadMetrica} type="text" name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Descripcion">Descripcion</Label>
-              <Input id="descripcion" type="text" name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
+              <Input value={this.state.descripcion} type="text" name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
             </FormGroup>
           </Col>
         </Row>
@@ -73,7 +78,7 @@ class NewTipoDeCargaForm extends Component {
               size="lg"
               className="bg-gradient-theme-left border-0 centerButton"
               block
-              onClick={this.handleSubmit.bind(this)}>
+              onClick={this.handleSubmit}>
               Guardar
             </Button>
           </Col>

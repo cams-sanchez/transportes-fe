@@ -2,10 +2,13 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 const LayoutRoute = (props) => {
+
   const { component: Component, layout: Layout, userPermissions, componentPermissions, ...rest } = props;
+
   if(userPermissions && componentPermissions.some((perm)=>{
     return perm === userPermissions;
   })){
+
    return (
       <Route
         {...rest}

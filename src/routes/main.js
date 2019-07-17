@@ -5,42 +5,29 @@ import { EmptyLayout, LayoutRoute, MainLayout } from '../components/Layout';
 import ButtonPage from '../pages/ButtonPage';
 import Login from '../pages/login/Login';
 import TipoCarga from '../pages/catalogs/TipoCarga';
-import ApiEndPoints from '../config/apiEndPoints';
-import axios from 'axios';
+import LoginHelper from '../helpers/LoginHelper';
+import { connect } from 'react-redux';
 
 class MainRouter extends React.Component {
 
-  apiCall = new ApiEndPoints();
+  loginHelper = new LoginHelper();
 
   state = {
     userPermissions: null,
   };
 
-  componentDidMount () {
+  async componentDidMount () {
     //Check on Back end the token and permission. and remove the settimeout that is emuilation the Back end
-    let apiCall = this.apiCall.userInfoFromToken();
-
-    if(window.localStorage.getItem('jwt') !== undefined) {
-      console.log("We have token");
-      let config = {
-        headers: {
-          'Authorization': 'Bearer ' + window.localStorage.getItem('jwt')
-        }
-      };
-      axios.get(
-        apiCall,
-        config,
-      ).then( response => {
-        if(response.data.success === true) {
-          this.setState({userPermissions: response.data.data.role})
-        }
-        console.log("Response",response.data.data.role);
-      }).catch(error => {
-        console.log('There was an error ', error);
+    /*console.log("Checking TokenInfo");
+    if(await this.loginHelper.getUserInfofromToken() === true) {
+      console.log("Found Permissions", this.loginHelper.loggedUserInfo);
+      this.setState({
+        userPermissions: this.loginHelper.loggedUserInfo,
       });
     }
-    console.log("Userperm", this.state.userPermissions);
 
+    console.log("Userperm", this.state.userPermissions);
+    */
     setTimeout(() => {
       this.setState({
         userPermissions: 'b'
@@ -94,5 +81,14 @@ class MainRouter extends React.Component {
   }
 }
 
-export default MainRouter;
+const mapStateToProps= (reduxState, ownProps) => {
+  return {
+    email: reduxState.UserLoginReducer.email,
+    permissions: reduxState.UserLoginReducer.permissions,
+    contacts: reduxState.UserLoginReducer.contacts,
+    phoneGear: reduxState.UserLoginReducer.phoneGear
+  }
+};
+
+export default connect(mapStateToProps)(MainRouter);
 

@@ -35,7 +35,9 @@ const tipoDeCargaReducer = (state = initialState, action) => {
         allTiposDeCarga:action.payload,
       };
     default:
-      return state;
+      return {
+        ...state,
+      };
   }
 };
 

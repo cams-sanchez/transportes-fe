@@ -2,8 +2,9 @@ import logo200Image from '../../assets/images/logo/logoTransportes.png';
 import React, {Component} from 'react';
 import { withRouter } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
-import ApiEndPoints from '../../config/apiEndPoints';
-import axios from 'axios/index';
+import LoginHelper from '../../helpers/LoginHelper';
+import allActions from '../../redux/actions';
+import { connect } from 'react-redux';
 
 class LoginForm extends Component {
 
@@ -12,6 +13,8 @@ class LoginForm extends Component {
     password: '',
   };
 
+  loginHelper = new LoginHelper();
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -19,25 +22,22 @@ class LoginForm extends Component {
     console.log(event.target.name);
   };
 
-  handleSubmit = event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
     const user = {
       email: this.state.email,
       password: this.state.password
     };
-    let apicall = new ApiEndPoints();
+
     console.log("User Info ", user);
-    let urlApi = apicall.loginUser() ;
-    axios.post( urlApi, user)
-      .then(res => {
-        const response = res.data;
-        if(response.success === true) {
-          console.log("We got token");
-          window.localStorage.setItem('jwt', response.token);
-          this.props.history.push('/catalogos/tiposdecarga');
-        }
-      });
+    await this.loginHelper.loginUser(user);
+
+    if(this.loginHelper.userLoggedIn === true) {
+      console.log("Setting user permissions to state ", this.loginHelper.loggedUserInfo);
+      this.props.SetUserInfo(this.loginHelper.loggedUserInfo);
+      this.props.history.push('/catalogos/tiposdecarga');
+    }
   };
 
   render() {
@@ -71,4 +71,10 @@ class LoginForm extends Component {
   }
 }
 
-export default withRouter(LoginForm);
+const mapDispatchToProps= (dispath) =>{
+  return {
+    SetUserInfo: (loggedUserInfo)=> {dispath(allActions.UserLoginAction.setUserInfo(loggedUserInfo))},
+  }
+};
+
+export default connect(null, mapDispatchToProps)(withRouter(LoginForm));

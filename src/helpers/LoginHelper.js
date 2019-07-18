@@ -40,7 +40,7 @@ class LoginHelper extends AxiosHelper {
       this.headerConfiguration,
     ).then(response => {
       if (response.data.success === true) {
-        this.loggedUserInfo = response.data.data.role;
+        this.loggedUserInfo = response.data.data.foundUserInfo;
         return true;
       }
     }).catch(error => {

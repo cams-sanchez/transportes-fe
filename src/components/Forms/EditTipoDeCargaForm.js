@@ -26,9 +26,9 @@ class EditTipoDeCargaForm extends Component {
     event.preventDefault();
     const tipoCarga = {
       _id: this.props.currentItem._id,
-      nombre:this.state.nombre,
-      unidadMetrica:this.state.unidadMetrica,
-      descripcion:this.state.descripcion
+      nombre:this.state.nombre !=='' ? this.state.nombre : this.props.currentItem.nombre,
+      unidadMetrica:this.state.unidadMetrica !=='' ? this.state.unidadMetrica : this.props.currentItem.unidadMetrica,
+      descripcion:this.state.descripcion !=='' ? this.state.descripcion : this.props.currentItem.descripcion
     };
 
     if(await this.catalogHelper.putTipoDeCarga(tipoCarga) === true) {

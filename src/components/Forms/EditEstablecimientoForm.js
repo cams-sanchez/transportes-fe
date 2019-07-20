@@ -31,13 +31,34 @@ class EditEstablecimientoForm extends Component {
     event.preventDefault();
     const establecimiento = {
       _id: this.props.currentItem._id,
-      nombreEstablecimiento: this.state.nombreEstablecimiento,
-      tipoEstablecimiento: this.state.tipoEstablecimiento,
-      direccion: this.state.direccion,
-      colonia: this.state.colonia,
-      cp: this.state.cp,
-      estado: this.state.estado,
-      municipio: this.state.municipio,
+
+      nombreEstablecimiento: this.state.nombreEstablecimiento !=='' ?
+        this.state.nombreEstablecimiento :
+        this.props.currentItem.nombreEstablecimiento,
+
+      tipoEstablecimiento: this.state.tipoEstablecimiento !=='' ?
+        this.state.tipoEstablecimiento :
+        this.props.currentItem.tipoEstablecimiento,
+
+      direccion: this.state.direccion !=='' ?
+        this.state.direccion :
+        this.props.currentItem.direccion,
+
+      colonia: this.state.colonia !=='' ?
+        this.state.colonia :
+        this.props.currentItem.colonia,
+
+      cp: this.state.cp !=='' ?
+        this.state.cp :
+        this.props.currentItem.cp,
+
+      estado: this.state.estado !=='' ?
+        this.state.estado :
+        this.props.currentItem.estado,
+
+      municipio: this.state.municipio !=='' ?
+        this.state.municipio :
+        this.props.currentItem.municipio,
     };
 
     if(await this.catalogHelper.putEstablecimiento(establecimiento) === true) {
@@ -82,7 +103,7 @@ class EditEstablecimientoForm extends Component {
             <FormGroup>
               <Label for="Tipo">Tipo</Label>
               <Input type="select" name="tipoEstablecimiento" onChange={this.handleChange}>
-                <option key="120a" value={currentItem.nombreEstablecimiento}>{currentItem.nombreEstablecimiento}</option>
+                <option key="120a" value={currentItem.tipoEstablecimiento}>{currentItem.tipoEstablecimiento}</option>
                 {
                   this.props.allTipoEstablecimientos.map((item, idx) => (
                     <option key={idx}>{item.nombre}</option>
@@ -102,7 +123,7 @@ class EditEstablecimientoForm extends Component {
         <Row form>
           <Col>
             <FormGroup>
-              <Label for="Direccion">Direccion</Label>
+              <Label for="Direccion">Dirección</Label>
               <Input defaultValue={currentItem.direccion} type="text" name="direccion" placeholder="Calle Numero Int y Ext" onChange={this.handleChange}/>
             </FormGroup>
           </Col>

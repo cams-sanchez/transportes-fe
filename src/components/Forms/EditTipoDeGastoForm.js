@@ -3,18 +3,17 @@ import { withRouter } from "react-router-dom";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import allActions from '../../redux/actions';
 import { connect } from 'react-redux';
-import TiposDeCargaHelper from '../../helpers/TiposDeCargaHelper';
+import TiposDeGastoHelper from '../../helpers/TiposDeGastoHelper';
 
-class EditTipoDeCargaForm extends Component {
+class EditTipoDeGastoForm extends Component {
 
   state = {
     _id:'',
     nombre:'',
-    unidadMetrica:'',
     descripcion:'',
   };
 
-  catalogHelper = new TiposDeCargaHelper();
+  catalogHelper = new TiposDeGastoHelper();
 
   handleChange = (event) => {
     this.setState({
@@ -25,16 +24,15 @@ class EditTipoDeCargaForm extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const tipoCarga = {
+    const tipoGasto = {
       _id: this.props.currentItem._id,
       nombre:this.state.nombre,
-      unidadMetrica:this.state.unidadMetrica,
       descripcion:this.state.descripcion
     };
 
-    if(await this.catalogHelper.putTipoDeCarga(tipoCarga) === true) {
-      if (await this.catalogHelper.getTiposDeCarga() === true) {
-        this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
+    if(await this.catalogHelper.putTipoDeGasto(tipoGasto) === true) {
+      if (await this.catalogHelper.getTiposDeGasto() === true) {
+        this.props.SetAllTiposDeGasto(this.catalogHelper.tiposDeGasto);
       }
       this.props.CloseModal();
     } else if(this.helper.is401Redirect === true) {
@@ -45,14 +43,14 @@ class EditTipoDeCargaForm extends Component {
   handleDeleteSubmit = async (event) => {
     event.preventDefault();
 
-    const tipoCarga = {
+    const tipoGasto = {
       _id: this.props.currentItem._id,
     };
 
-    console.log("Delete Event", tipoCarga);
-    if(await this.catalogHelper.deleteTipoDeCarga(tipoCarga) === true) {
-      if (await this.catalogHelper.getTiposDeCarga() === true) {
-        this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
+    console.log("Delete Event", tipoGasto);
+    if(await this.catalogHelper.deleteTipoDeGasto(tipoGasto) === true) {
+      if (await this.catalogHelper.getTiposDeGasto() === true) {
+        this.props.SetAllTiposDeGasto(this.catalogHelper.tiposDeGasto);
       }
       this.props.CloseModal();
     } else if(this.catalogHelper.is401Redirect === true) {
@@ -75,12 +73,6 @@ class EditTipoDeCargaForm extends Component {
             <FormGroup>
               <Label for="Nombre">Nombre</Label>
               <Input type="text" defaultValue={currentItem.nombre} name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label for="Unidad Métrica">Unidad Métrica</Label>
-              <Input type="text" defaultValue={currentItem.unidadMetrica} name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
@@ -117,9 +109,9 @@ class EditTipoDeCargaForm extends Component {
 
 const mapDispatchToProps= (dispath) =>{
   return {
-    CloseModal: ()=>{dispath(allActions.TipoDeCargaAction.closeModal())},
-    SetAllTiposDeCarga: (allTiposDeCarga)=> {dispath(allActions.TipoDeCargaAction.setAllTiposDeCarga(allTiposDeCarga))},
+    CloseModal: ()=>{dispath(allActions.GenericAction.closeModal())},
+    SetAllTiposDeGasto: (allTiposDeGasto)=> {dispath(allActions.TipoDeGastoAction.setAllTiposDeGasto(allTiposDeGasto))},
   }
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(EditTipoDeCargaForm));
+export default connect(null, mapDispatchToProps)(withRouter(EditTipoDeGastoForm));

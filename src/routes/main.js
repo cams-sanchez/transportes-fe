@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { EmptyLayout, LayoutRoute, MainLayout } from '../components/Layout';
 import ButtonPage from '../pages/ButtonPage';
-import Login from '../pages/login/Login';
-import TipoCarga from '../pages/catalogs/TipoCarga';
 import { connect } from 'react-redux';
 import allActions from '../redux/actions';
 import LoginHelper from '../helpers/LoginHelper';
+import CatalogRoutes from '../routes/CatalogRoutes';
+import LoginRoutes from './LoginRoutes';
+import Login from '../pages/login/Login';
 
 class MainRouter extends React.Component {
 
@@ -23,6 +24,8 @@ class MainRouter extends React.Component {
   };
 
   securedRoutes = () => {
+    console.log("Secured Roytes");
+
     const userPermissions = 'b';
     return (
       <React.Fragment>
@@ -34,14 +37,7 @@ class MainRouter extends React.Component {
           userPermissions={userPermissions}//permisos del usuario
           componentPermissions={['b', 'c']} //permisos del componene
         />
-        <LayoutRoute
-          exact
-          path="/catalogos/tiposdecarga"
-          layout={MainLayout}
-          component={TipoCarga}
-          userPermissions={userPermissions}
-          componentPermissions={['a', 'b']}
-        />
+        <CatalogRoutes userPermissions={userPermissions}/>
       </React.Fragment>
     );
   };

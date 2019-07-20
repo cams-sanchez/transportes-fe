@@ -5,7 +5,10 @@ const LayoutRoute = (props) => {
 
   const { component: Component, layout: Layout, userPermissions, componentPermissions, ...rest } = props;
 
+  console.log("LAyout Route props", props);
+  console.log("We have permissions", userPermissions, "Componenent permission", componentPermissions);
   if(userPermissions && componentPermissions.some((perm)=>{
+
     return perm === userPermissions;
   })){
 

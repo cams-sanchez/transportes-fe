@@ -40,6 +40,22 @@ class ApiEndPoints {
   deleteTipoCarga(){
     return this.createApiUrl('/catalogs/tiposdecarga/delete');
   }
+
+  getAllTiposDeGasto(){
+    return this.createApiUrl('/catalogs/tiposdegasto');
+  }
+
+  setNewTipoGasto(){
+    return this.createApiUrl('/catalogs/tiposdegasto/new');
+  }
+
+  editTipoGasto(){
+    return this.createApiUrl('/catalogs/tiposdegasto/update');
+  }
+
+  deleteTipoGasto(){
+    return this.createApiUrl('/catalogs/tiposdegasto/delete');
+  }
 }
 
 export default ApiEndPoints;

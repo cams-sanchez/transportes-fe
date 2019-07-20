@@ -1,13 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Switch } from "react-router-dom";
-
 import { EmptyLayout, LayoutRoute } from '../components/Layout';
 import Login from '../pages/login/Login';
 
-const LoginRouter = () => {
-  return(
-    <BrowserRouter >
-    <Switch>
+const LoginRoutes = (props) => {
+  return (
       <LayoutRoute
         exact
         path="/login"
@@ -16,11 +12,8 @@ const LoginRouter = () => {
           <Login {...props} />
         )}
       />
-    </Switch>
-  </BrowserRouter>
   );
 };
 
-
-export default LoginRouter;
+export default LoginRoutes;
 

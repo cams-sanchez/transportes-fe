@@ -54,32 +54,32 @@ class TipoCarga extends Component{
 
         <Row>
           <Col>
-            <Card className="mb-3">
+            <Card className="mb-2">
               <CardHeader>Tipos de Carga</CardHeader>
               <CardBody>
                 <div className="table-overflow">
-                <Table>
-                  <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Unidad Métrica</th>
-                    <th>Descripción</th>
-                    <th>Opciones</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  {
-                    this.props.allTiposDeCarga.map((item, idx) => (
-                      <tr key={idx}>
-                        <td>{item.nombre}</td>
-                        <td>{item.unidadMetrica}</td>
-                        <td>{item.descripcion}</td>
-                        <td><Button color="secondary" onClick={()=>this.renderModal(item)}>Editar</Button></td>
-                      </tr>
-                    ))
-                  }
-                  </tbody>
-                </Table>
+                  <Table>
+                    <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Unidad Métrica</th>
+                      <th>Descripción</th>
+                      <th>Opciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                      this.props.allTiposDeCarga.map((item, idx) => (
+                        <tr key={idx}>
+                          <td>{item.nombre}</td>
+                          <td>{item.unidadMetrica}</td>
+                          <td>{item.descripcion}</td>
+                          <td><Button color="secondary" onClick={()=>this.renderModal(item)}>Editar</Button></td>
+                        </tr>
+                      ))
+                    }
+                    </tbody>
+                  </Table>
                 </div>
               </CardBody>
             </Card>

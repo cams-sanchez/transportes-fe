@@ -10,7 +10,7 @@ class MainLayout extends React.Component {
       .classList.contains('cr-sidebar--open');
   }
 
-  componentWillReceiveProps({ breakpoint }) {
+  componentWillReceiveProps(breakpoint) {
     if (breakpoint !== this.props.breakpoint) {
       this.checkBreakpoint(breakpoint);
     }
@@ -43,7 +43,7 @@ class MainLayout extends React.Component {
       case 'lg':
       case 'xl':
       default:
-        return this.openSidebar('open');
+        return this.openSidebar('close');
     }
   }
 

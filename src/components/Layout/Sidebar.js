@@ -24,6 +24,7 @@ import {
   NavItem,
   NavLink as BSNavLink,
 } from 'reactstrap';
+
 import bn from '../../utils/bemnames';
 
 const navCatalogos = [
@@ -45,7 +46,7 @@ const bem = bn.create('sidebar');
 
 class Sidebar extends React.Component {
   state = {
-    isOpenCatalogos: true,
+    isOpenCatalogos: false,
   };
 
   handleClick = name => () => {

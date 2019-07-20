@@ -85,6 +85,7 @@ class EditTipoDeGastoForm extends Component {
         <Row>
           <Col>
             <Button
+              type="submit"
               size="lg"
               className="bg-gradient-theme-left border-0 centerButton"
               block

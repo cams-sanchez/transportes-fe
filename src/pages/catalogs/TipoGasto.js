@@ -57,26 +57,28 @@ class TipoGasto extends Component{
             <Card className="mb-3">
               <CardHeader>Tipos de Gasto</CardHeader>
               <CardBody>
-                <Table size="sm">
-                  <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Opciones</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  {
-                    this.props.allTiposDeGasto.map((item, idx) => (
-                      <tr key={idx}>
-                        <td>{item.nombre}</td>
-                        <td>{item.descripcion}</td>
-                        <td><Button color="secondary" onClick={()=>this.renderModal(item)}>Editar</Button></td>
-                      </tr>
-                    ))
-                  }
-                  </tbody>
-                </Table>
+                <div className="table-overflow">
+                  <Table size="sm">
+                    <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Descripción</th>
+                      <th>Opciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                      this.props.allTiposDeGasto.map((item, idx) => (
+                        <tr key={idx}>
+                          <td>{item.nombre}</td>
+                          <td>{item.descripcion}</td>
+                          <td><Button color="secondary" onClick={()=>this.renderModal(item)}>Editar</Button></td>
+                        </tr>
+                      ))
+                    }
+                    </tbody>
+                  </Table>
+                </div>
               </CardBody>
             </Card>
           </Col>

@@ -60,16 +60,15 @@ class TipoGasto extends Component{
                 <Table size="sm">
                   <thead>
                   <tr>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>Opciones</th>
                   </tr>
                   </thead>
                   <tbody>
                   {
                     this.props.allTiposDeGasto.map((item, idx) => (
                       <tr key={idx}>
-                        <th scope="row">{item._id}</th>
                         <td>{item.nombre}</td>
                         <td>{item.descripcion}</td>
                         <td><Button color="secondary" onClick={()=>this.renderModal(item)}>Editar</Button></td>

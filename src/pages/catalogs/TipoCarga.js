@@ -57,20 +57,19 @@ class TipoCarga extends Component{
             <Card className="mb-3">
               <CardHeader>Tipos de Carga</CardHeader>
               <CardBody>
-                <Table size="sm">
+                <Table>
                   <thead>
                   <tr>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Unidad Métrica</th>
                     <th>Descripción</th>
+                    <th>Opciones</th>
                   </tr>
                   </thead>
                   <tbody>
                   {
                     this.props.allTiposDeCarga.map((item, idx) => (
                       <tr key={idx}>
-                        <th scope="row">{item._id}</th>
                         <td>{item.nombre}</td>
                         <td>{item.unidadMetrica}</td>
                         <td>{item.descripcion}</td>

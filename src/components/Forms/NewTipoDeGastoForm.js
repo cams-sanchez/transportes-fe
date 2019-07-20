@@ -55,13 +55,13 @@ class NewTipoDeGastoForm extends Component {
           <Col>
             <FormGroup>
               <Label for="Nombre">Nombre</Label>
-              <Input value={this.state.nombre} type="text" name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
+              <Input value={this.state.nombre} type="text" name="nombre" placeholder="viaticos, estancias, mecanico" onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Descripcion">Descripcion</Label>
-              <Input value={this.state.descripcion} type="text" name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
+              <Input value={this.state.descripcion} type="text" name="descripcion" placeholder="gasto por algún concepto" onChange={this.handleChange}/>
             </FormGroup>
           </Col>
         </Row>

@@ -118,7 +118,7 @@ class EditTipoDeCargaForm extends Component {
 
 const mapDispatchToProps= (dispath) =>{
   return {
-    CloseModal: ()=>{dispath(allActions.TipoDeCargaAction.closeModal())},
+    CloseModal: ()=>{dispath(allActions.GenericAction.closeModal())},
     SetAllTiposDeCarga: (allTiposDeCarga)=> {dispath(allActions.TipoDeCargaAction.setAllTiposDeCarga(allTiposDeCarga))},
   }
 };

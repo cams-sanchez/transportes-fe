@@ -1,7 +1,5 @@
 
 const initialState = {
-  modalIsOpen:false,
-  currentItem: {},
   allTiposDeCarga: [],
   nombre:'',
   unidadMetrica:'',
@@ -10,21 +8,6 @@ const initialState = {
 
 const tipoDeCargaReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'OpenModal':
-      return {
-        ...state,
-        modalIsOpen: true,
-      };
-    case 'CloseModal':
-      return {
-        ...state,
-        modalIsOpen: false,
-      };
-    case 'SetCurrentItem':
-      return {
-        ...state,
-        currentItem: action.payload,
-      };
     case 'GetAllItems':
       return {
         ...state,

@@ -92,16 +92,16 @@ class TipoCarga extends Component{
 
 const mapStateToProps= (reduxState, ownProps) => {
   return {
-    currentItem: reduxState.tipoDeCargaReducer.currentItem,
+    currentItem: reduxState.GenericReducer.currentItem,
     allTiposDeCarga: reduxState.tipoDeCargaReducer.allTiposDeCarga
   }
 };
 
 const mapDispatchToProps= (dispath) =>{
   return {
-    SetCurrentItem: (currentItem)=> {dispath(allActions.TipoDeCargaAction.setCurrentItem(currentItem))},
+    SetCurrentItem: (currentItem)=> {dispath(allActions.GenericAction.setCurrentItem(currentItem))},
     SetAllTiposDeCarga: (allTiposDeCarga)=> {dispath(allActions.TipoDeCargaAction.setAllTiposDeCarga(allTiposDeCarga))},
-    OpenModal: ()=> {dispath(allActions.TipoDeCargaAction.openModal())},
+    OpenModal: ()=> {dispath(allActions.GenericAction.openModal())},
   }
 };
 

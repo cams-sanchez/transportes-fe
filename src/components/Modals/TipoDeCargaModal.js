@@ -37,13 +37,13 @@ class TipoDeCargaModal extends Component {
 
 const mapStateToProps= (reduxState, ownProps) => {
   return {
-    modalIsOpen: reduxState.tipoDeCargaReducer.modalIsOpen,
+    modalIsOpen: reduxState.GenericReducer.modalIsOpen,
   }
 };
 
 const mapDispatchToProps= (dispath) =>{
   return {
-    CloseModal: ()=>{dispath(allActions.TipoDeCargaAction.closeModal())},
+    CloseModal: ()=>{dispath(allActions.GenericAction.closeModal())},
   }
 };
 

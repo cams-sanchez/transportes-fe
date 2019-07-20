@@ -11,7 +11,6 @@ class TipoDeGastoModal extends Component {
   };
 
   render () {
-    console.log("IN MODAL", this.props.currentItem);
     return (
       <Modal isOpen={this.props.modalIsOpen}>
         <ModalHeader >Editar Tipo De Gasto</ModalHeader>

@@ -1,21 +1,26 @@
-
 const GenericActions = {
-  openModal: () =>{
+  openModal: () => {
     return {
-      type:'OpenModal',
-    }
+      type: 'OpenModal',
+    };
   },
   closeModal: () => {
     return {
-      type:'CloseModal'
-    }
+      type: 'CloseModal'
+    };
   },
   setCurrentItem: (currentItem) => {
     return {
-      type:'SetCurrentItem',
+      type: 'SetCurrentItem',
       payload: currentItem,
-    }
+    };
   },
+  setEstadosRepublica: (estadosRepublica) => {
+    return {
+      type: 'SetEstadosRepublica',
+      payload: estadosRepublica,
+    };
+  }
 };
 
 export default GenericActions;

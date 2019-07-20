@@ -20,7 +20,6 @@ class EditTipoDeCargaForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(event.target.name);
   };
 
   handleSubmit = async (event) => {
@@ -49,14 +48,12 @@ class EditTipoDeCargaForm extends Component {
       _id: this.props.currentItem._id,
     };
 
-    console.log("Delete Event", tipoCarga);
     if(await this.catalogHelper.deleteTipoDeCarga(tipoCarga) === true) {
       if (await this.catalogHelper.getTiposDeCarga() === true) {
         this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
       }
       this.props.CloseModal();
     } else if(this.catalogHelper.is401Redirect === true) {
-      console.log("Redirectiong");
       this.props.history.push('/login');
     }
   };

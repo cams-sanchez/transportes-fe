@@ -18,7 +18,6 @@ class NewTipoDeGastoForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(event.target.value);
   };
 
   handleSubmit = async (event) => {
@@ -36,8 +35,6 @@ class NewTipoDeGastoForm extends Component {
       unidadMetrica:'',
       descripcion:'',
     });
-
-    console.log("newTipoGasto Info ", newTipoGasto);
 
     if(await this.catalogHelper.postTipoDeGasto(newTipoGasto) === true) {
       if (await this.catalogHelper.getTiposDeGasto() === true) {

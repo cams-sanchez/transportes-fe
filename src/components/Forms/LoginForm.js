@@ -19,7 +19,6 @@ class LoginForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(event.target.name);
   };
 
   handleSubmit = async (event) => {
@@ -34,7 +33,6 @@ class LoginForm extends Component {
     await this.loginHelper.loginUser(user);
 
     if(this.loginHelper.userLoggedIn === true) {
-      console.log("Setting user permissions to state ", this.loginHelper.loggedUserInfo);
       this.props.SetUserInfo(this.loginHelper.loggedUserInfo);
       this.props.history.push('/catalogos/tiposdecarga');
     }

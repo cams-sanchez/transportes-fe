@@ -2,6 +2,7 @@
 const initialState = {
   modalIsOpen:false,
   currentItem: {},
+  estadosRepublica: [],
 };
 
 const GenericReducer = (state = initialState, action) => {
@@ -20,6 +21,11 @@ const GenericReducer = (state = initialState, action) => {
       return {
         ...state,
         currentItem: action.payload,
+      };
+    case 'SetEstadosRepublica':
+      return {
+        ...state,
+        estadosRepublica: action.payload,
       };
     default:
       return {

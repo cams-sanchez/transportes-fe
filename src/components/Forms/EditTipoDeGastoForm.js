@@ -19,7 +19,6 @@ class EditTipoDeGastoForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(event.target.name);
   };
 
   handleSubmit = async (event) => {
@@ -47,14 +46,12 @@ class EditTipoDeGastoForm extends Component {
       _id: this.props.currentItem._id,
     };
 
-    console.log("Delete Event", tipoGasto);
     if(await this.catalogHelper.deleteTipoDeGasto(tipoGasto) === true) {
       if (await this.catalogHelper.getTiposDeGasto() === true) {
         this.props.SetAllTiposDeGasto(this.catalogHelper.tiposDeGasto);
       }
       this.props.CloseModal();
     } else if(this.catalogHelper.is401Redirect === true) {
-      console.log("Redirectiong");
       this.props.history.push('/login');
     }
   };

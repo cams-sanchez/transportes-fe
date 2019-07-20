@@ -56,6 +56,30 @@ class ApiEndPoints {
   deleteTipoGasto(){
     return this.createApiUrl('/catalogs/tiposdegasto/delete');
   }
+
+  getAllEstablecimientos(){
+    return this.createApiUrl('/catalogs/establecimiento');
+  }
+
+  setNewEstablecimiento(){
+    return this.createApiUrl('/catalogs/establecimiento/new');
+  }
+
+  editEstablecimiento(){
+    return this.createApiUrl('/catalogs/establecimiento/update');
+  }
+
+  deleteEstablecimiento(){
+    return this.createApiUrl('/catalogs/establecimiento/delete');
+  }
+
+  getEstadosRepublica(){
+    return this.createApiUrl('/catalogs/estadosrepublica');
+  }
+
+  getTipoEstablecimientos(){
+    return this.createApiUrl('/catalogs/tipoestablecimiento');
+  }
 }
 
 export default ApiEndPoints;

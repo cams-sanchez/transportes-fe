@@ -1,33 +1,28 @@
 import React, {Component} from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import EditTipoDeCargaForm from '../Forms/EditTipoDeCargaForm';
+import EditEstablecimientoForm from '../Forms/EditEstablecimientoForm';
 import allActions from '../../redux/actions';
 import { connect } from 'react-redux';
 
-class TipoDeCargaModal extends Component {
+class EstablecimientoModal extends Component {
 
   closeModal = () => {
     this.props.CloseModal();
   };
 
-  testFunction () {
-    console.log("TESTHING", this);
-  }
-
   render () {
     return (
       <Modal isOpen={this.props.modalIsOpen}>
-        <ModalHeader >Editar Tipo De Carga</ModalHeader>
+        <ModalHeader >Editar Establecimiento</ModalHeader>
         <ModalBody>
-          <EditTipoDeCargaForm currentItem={this.props.currentItem} />
+          <EditEstablecimientoForm
+            currentItem={this.props.currentItem}
+            estadosRepublica={this.props.estadosRepublica}
+            allTipoEstablecimientos={this.props.allTipoEstablecimientos}
+          />
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={this.closeModal}>Cerrar</Button>
-          {/*<Button color="secondary" onClick={function(){
-            console.log("Dentro De funcion", this);
-            this.testFunction(); //the () maks the difference, of the this cause it is asking to execute right away so
-            //the calling object is Button not the main component
-          }.bind(this)}>Cancel</Button>*/}
         </ModalFooter>
       </Modal>
     );
@@ -46,4 +41,4 @@ const mapDispatchToProps= (dispath) =>{
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TipoDeCargaModal);
+export default connect(mapStateToProps, mapDispatchToProps)(EstablecimientoModal);

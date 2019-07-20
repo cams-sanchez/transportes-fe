@@ -28,11 +28,11 @@ import {
 import bn from '../../utils/bemnames';
 
 const navCatalogos = [
-  { to: '/establecimientos', name: 'establecimientos', exact: false, Icon: MdBusiness },
+  { to: '/catalogos/establecimiento', name: 'establecimientos', exact: false, Icon: MdBusiness },
   { to: '/catalogos/tiposdecarga', name: 'carga', exact: false, Icon: MdShoppingBasket },
   { to: '/catalogos/tiposdegasto', name: 'gasto', exact: false, Icon: MdMonetizationOn },
-  { to: '/tiposDeIncidencia', name: 'incidencia', exact: false, Icon: MdSmsFailed },
-  { to: '/tiposDeMantenimiento', name: 'mantenimiento', exact: false, Icon: MdEvStation },
+  { to: '/catalogos/tiposDeIncidencia', name: 'incidencia', exact: false, Icon: MdSmsFailed },
+  { to: '/catalogos/tiposDeMantenimiento', name: 'mantenimiento', exact: false, Icon: MdEvStation },
 ];
 
 const navItems = [

@@ -57,6 +57,7 @@ class TipoCarga extends Component{
             <Card className="mb-3">
               <CardHeader>Tipos de Carga</CardHeader>
               <CardBody>
+                <div className="table-overflow">
                 <Table>
                   <thead>
                   <tr>
@@ -79,6 +80,7 @@ class TipoCarga extends Component{
                   }
                   </tbody>
                 </Table>
+                </div>
               </CardBody>
             </Card>
           </Col>

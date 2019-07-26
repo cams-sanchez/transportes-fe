@@ -1,0 +1,14 @@
+// colors
+
+.bg-gradient-theme {
+  background: linear-gradient(to bottom, theme-color("third"), theme-color("fourth"));
+}
+.bg-gradient-theme-top {
+  background: linear-gradient(to top, theme-color("third"), theme-color("fourth"));
+}
+.bg-gradient-theme-left {
+  background: linear-gradient(to left, theme-color("third"), theme-color("fourth"));
+}
+.bg-gradient-theme-right {
+  background: linear-gradient(to right, theme-color("third"), theme-color("fourth"));
+}

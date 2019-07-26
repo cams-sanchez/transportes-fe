@@ -33,7 +33,7 @@ const navCatalogos = [
   { to: '/catalogos/tiposdecarga', name: 'carga', exact: false, Icon: MdShoppingBasket },
   { to: '/catalogos/tiposdegasto', name: 'gasto', exact: false, Icon: MdMonetizationOn },
   { to: '/catalogos/tiposDeIncidencia', name: 'incidencia', exact: false, Icon: MdSmsFailed },
-  { to: '/catalogos/tiposDeMantenimiento', name: 'mantenimiento', exact: false, Icon: MdEvStation },
+  { to: '/catalogos/tipomantenimiento', name: 'mantenimiento', exact: false, Icon: MdEvStation },
 ];
 
 const navItems = [

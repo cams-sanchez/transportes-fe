@@ -3,6 +3,7 @@ import { LayoutRoute, MainLayout } from '../components/Layout';
 import TipoCarga from '../pages/catalogs/TipoCarga';
 import TipoGasto from '../pages/catalogs/TipoGasto';
 import Establecimiento from '../pages/catalogs/Establecimiento';
+import TipoEstablecimiento from '../pages/catalogs/TipoEstablecimiento';
 
 const CatalogRoutes = (props) => {
   let { userPermissions } = props;
@@ -30,6 +31,14 @@ const CatalogRoutes = (props) => {
         path="/catalogos/establecimiento"
         layout={MainLayout}
         component={Establecimiento}
+        userPermissions={userPermissions}
+        componentPermissions={['a', 'b']}
+      />
+      <LayoutRoute
+        exact
+        path="/catalogos/tipoestablecimiento"
+        layout={MainLayout}
+        component={TipoEstablecimiento}
         userPermissions={userPermissions}
         componentPermissions={['a', 'b']}
       />

@@ -29,6 +29,7 @@ import bn from '../../utils/bemnames';
 
 const navCatalogos = [
   { to: '/catalogos/establecimiento', name: 'establecimientos', exact: false, Icon: MdBusiness },
+  { to: '/catalogos/tipoestablecimiento', name: 'tipo establecimientos', exact: false, Icon: MdBusiness },
   { to: '/catalogos/tiposdecarga', name: 'carga', exact: false, Icon: MdShoppingBasket },
   { to: '/catalogos/tiposdegasto', name: 'gasto', exact: false, Icon: MdMonetizationOn },
   { to: '/catalogos/tiposDeIncidencia', name: 'incidencia', exact: false, Icon: MdSmsFailed },

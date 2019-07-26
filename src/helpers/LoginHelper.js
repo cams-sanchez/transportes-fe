@@ -1,4 +1,5 @@
 import AxiosHelper from './AxiosHelper';
+import UserEndPoints from '../config/UserEndPoints';
 import axios from 'axios';
 
 class LoginHelper extends AxiosHelper {
@@ -11,6 +12,7 @@ class LoginHelper extends AxiosHelper {
     super();
     this.userLoggedIn = false;
     this.loggedUserInfo = {};
+    this.apiUrlGenerator = new UserEndPoints();
   }
 
   loginUser = async (userInfo) => {

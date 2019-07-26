@@ -1,4 +1,4 @@
-import ApiEndPoints from '../config/apiEndPoints';
+import GenericEndPoints from '../config/GenericEndPoints';
 import axios from 'axios';
 
 class AxiosHelper {
@@ -9,7 +9,7 @@ class AxiosHelper {
   estadosRepublica = [];
 
   constructor () {
-    this.apiUrlGenerator = new ApiEndPoints();
+    this.apiUrlGenerator = new GenericEndPoints();
     this.getTokenBearer();
     this.setHeaderConfiguration();
   }

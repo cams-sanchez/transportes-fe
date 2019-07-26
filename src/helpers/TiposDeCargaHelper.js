@@ -1,4 +1,5 @@
 import AxiosHelper from './AxiosHelper';
+import TipoCargaEndPoints from '../config/TipoCargaEndPoints';
 import axios from 'axios';
 
 class TiposDeCargaHelper extends AxiosHelper {
@@ -8,6 +9,7 @@ class TiposDeCargaHelper extends AxiosHelper {
   constructor () {
     super();
     this.tiposDeCarga = {};
+    this.apiUrlGenerator = new TipoCargaEndPoints();
   }
 
   postTipoDeCarga = async (newTipoCarga) => {

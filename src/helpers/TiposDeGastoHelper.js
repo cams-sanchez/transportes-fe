@@ -1,4 +1,5 @@
 import AxiosHelper from './AxiosHelper';
+import TipoGastoEndPoints from '../config/TipoGastoEndPoints';
 import axios from 'axios';
 
 class TiposDeGastoHelper extends AxiosHelper {
@@ -8,6 +9,7 @@ class TiposDeGastoHelper extends AxiosHelper {
   constructor () {
     super();
     this.tiposDeGasto = {};
+    this.apiUrlGenerator = new TipoGastoEndPoints();
   }
 
   postTipoDeGasto = async (newTipoGasto) => {

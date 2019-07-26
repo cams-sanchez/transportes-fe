@@ -1,4 +1,5 @@
 import AxiosHelper from './AxiosHelper';
+import EstablecimientoEndPoints from '../config/EstablecimientoEndPoints';
 import axios from 'axios';
 
 class EstablecimientoHelper extends AxiosHelper {
@@ -10,6 +11,7 @@ class EstablecimientoHelper extends AxiosHelper {
     super();
     this.establecimientos = {};
     this.tipoEstablecimientos = [];
+    this.apiUrlGenerator = new EstablecimientoEndPoints();
   }
 
   postEstablecimiento = async (newEstablecimiento) => {

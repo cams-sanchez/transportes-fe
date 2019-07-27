@@ -5,6 +5,7 @@ import TipoGasto from '../pages/catalogs/TipoGasto';
 import Establecimiento from '../pages/catalogs/Establecimiento';
 import TipoEstablecimiento from '../pages/catalogs/TipoEstablecimiento';
 import TipoMantenimiento from '../pages/catalogs/TipoMantenimiento';
+import TipoIncidencia from '../pages/catalogs/TipoIncidencia';
 
 const CatalogRoutes = (props) => {
   let { userPermissions } = props;
@@ -48,6 +49,14 @@ const CatalogRoutes = (props) => {
         path="/catalogos/tipomantenimiento"
         layout={MainLayout}
         component={TipoMantenimiento}
+        userPermissions={userPermissions}
+        componentPermissions={['a', 'b']}
+      />
+      <LayoutRoute
+        exact
+        path="/catalogos/tipoincidencia"
+        layout={MainLayout}
+        component={TipoIncidencia}
         userPermissions={userPermissions}
         componentPermissions={['a', 'b']}
       />

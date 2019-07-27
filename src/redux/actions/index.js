@@ -3,7 +3,8 @@ import UserLoginAction from './UserLoginActions';
 import TipoDeGastoAction from './TipoDeGastoActions';
 import GenericAction from './GenericActions';
 import EstablecimientoAction from './EstablecimientoActions';
-import TipoMantenimientoAction from './TipoMantenimientoActions'
+import TipoMantenimientoAction from './TipoMantenimientoActions';
+import TipoIncidenciaAction from './TipoIncidenciaActions';
 
 const allActions = {
   TipoDeCargaAction,
@@ -11,7 +12,8 @@ const allActions = {
   TipoDeGastoAction,
   GenericAction,
   EstablecimientoAction,
-  TipoMantenimientoAction
+  TipoMantenimientoAction,
+  TipoIncidenciaAction
 };
 
 export default allActions

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import allActions from '../redux/actions';
 import LoginHelper from '../helpers/LoginHelper';
 import CatalogRoutes from '../routes/CatalogRoutes';
+import UnidadesRoutes from '../routes/UnidadesRoutes';
 import LoginRoutes from './LoginRoutes';
 import Login from '../pages/login/Login';
 
@@ -38,6 +39,7 @@ class MainRouter extends React.Component {
           componentPermissions={['b', 'c']} //permisos del componene
         />
         <CatalogRoutes userPermissions={userPermissions}/>
+        <UnidadesRoutes userPermissions={userPermissions}/>
       </React.Fragment>
     );
   };

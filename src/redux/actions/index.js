@@ -5,6 +5,7 @@ import GenericAction from './GenericActions';
 import EstablecimientoAction from './EstablecimientoActions';
 import TipoMantenimientoAction from './TipoMantenimientoActions';
 import TipoIncidenciaAction from './TipoIncidenciaActions';
+import UnidadAction from './UnidadActions';
 
 const allActions = {
   TipoDeCargaAction,
@@ -13,7 +14,8 @@ const allActions = {
   GenericAction,
   EstablecimientoAction,
   TipoMantenimientoAction,
-  TipoIncidenciaAction
+  TipoIncidenciaAction,
+  UnidadAction
 };
 
 export default allActions

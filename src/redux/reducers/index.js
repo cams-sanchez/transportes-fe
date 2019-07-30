@@ -5,8 +5,10 @@ import GenericReducer from './GenericReducer';
 import EstablecimientoReducer from './EstablecimientoReducer';
 import TipoMantenimientoReducer from './TipoMantenimientoReducer'
 import TipoIncidenciaReducer from './TipoIncidenciaReducer'
+import UnidadReducer from './UnidadReducer';
 
 import {combineReducers} from 'redux';
+
 
 const allReducers = combineReducers({
   tipoDeCargaReducer,
@@ -15,7 +17,8 @@ const allReducers = combineReducers({
   GenericReducer,
   EstablecimientoReducer,
   TipoMantenimientoReducer,
-  TipoIncidenciaReducer
+  TipoIncidenciaReducer,
+  UnidadReducer,
 });
 
 export default allReducers;

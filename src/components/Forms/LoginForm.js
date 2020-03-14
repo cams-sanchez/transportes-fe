@@ -34,7 +34,7 @@ class LoginForm extends Component {
 
     if(this.loginHelper.userLoggedIn === true) {
       this.props.SetUserInfo(this.loginHelper.loggedUserInfo);
-      this.props.history.push('/catalogos/tiposdecarga');
+      //this.props.history.push('/catalogos/tiposdecarga');
     }
   };
 

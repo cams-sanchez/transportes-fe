@@ -1,8 +1,8 @@
 class EndPointFactory {
 
   createApiUrl(endPoint) {
-    let apiHost = 'http://localhost:';
-    let apiPort = '30001';
+    let apiHost = 'http://transportes.com';
+    let apiPort = '80';
     let prodUrl = 'https://cams-sanchez-be.herokuapp.com';
     let apiUrl = apiHost + apiPort;
 

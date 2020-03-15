@@ -1,5 +1,6 @@
 import GenericEndPoints from '../config/GenericEndPoints';
 import axios from 'axios';
+import LocalStorageHelper from "./LolcalStorageHelper";
 
 class AxiosHelper {
   apiUrlGenerator;
@@ -7,9 +8,11 @@ class AxiosHelper {
   headerConfiguration;
   is401Redirect = false;
   estadosRepublica = [];
+  localStorageHelper;
 
   constructor () {
     this.apiUrlGenerator = new GenericEndPoints();
+    this.localStorageHelper = new LocalStorageHelper();
     this.getTokenBearer();
     this.setHeaderConfiguration();
   }
@@ -23,7 +26,7 @@ class AxiosHelper {
   };
 
   getTokenBearer = () => {
-    this.tokenBearer = localStorage.getItem('jwt');
+    this.tokenBearer = this.localStorageHelper.getValueForKey('jwt');
   };
 
   check401Error = (error) => {

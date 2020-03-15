@@ -9,7 +9,7 @@ class UserEndPoints extends EndPointFactory{
   }
 
   userInfoFromToken() {
-    let urlApi = this.createApiUrl('/users/infoFromToken');
+    let urlApi = this.createApiUrl('/api/infoFromToken');
     return urlApi;
   }
 }

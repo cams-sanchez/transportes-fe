@@ -19,14 +19,22 @@ class LoginHelper extends AxiosHelper {
     let urlApi = this.apiUrlGenerator.loginUser();
 
     return await axios.post(urlApi, userInfo)
-      .then(res => {
-        if (res.data.success === true) {
-          localStorage.setItem('jwt', res.data.token);
-          this.loggedUserInfo = res.data.foundUserInfo;
+      .then(response => {
+        if (response.data.success === true) {
+
+          this.loggedUserInfo = response.data.foundUserInfo;
+
+          this.localStorageHelper.saveValueToLocalStorage('jwt', response.data.token);
+          this.localStorageHelper.saveValueToLocalStorage(
+              'loggedUserInfo',
+              JSON.stringify(this.loggedUserInfo)
+          );
+
           this.userLoggedIn = true;
+
           return true;
         } else {
-          this.checkLoginErrorMsg(res.data.message);
+          this.checkLoginErrorMsg(response.data.message);
           return false;
         }
       }).catch(error => {
@@ -41,8 +49,13 @@ class LoginHelper extends AxiosHelper {
       urlApi,
       this.headerConfiguration,
     ).then(response => {
+      console.log("RESPONSE FROM USER TOKEN ", response);
       if (response.data.success === true) {
-        this.loggedUserInfo = response.data.data.foundUserInfo;
+        this.loggedUserInfo = response.data.foundUserInfo;
+        this.localStorageHelper.saveValueToLocalStorage(
+            'loggedUserInfo',
+            JSON.stringify(this.loggedUserInfo)
+        );
         return true;
       }
     }).catch(error => {

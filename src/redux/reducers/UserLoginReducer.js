@@ -11,6 +11,7 @@ const UserLoginReducer = (state = initialState, action) => {
     case 'SetUserInfo':
       console.log("Action Payload", action.payload);
       return {
+        ...state,
         email: action.payload.email,
         permissions: action.payload.permissions,
         contacts: action.payload.contacts,

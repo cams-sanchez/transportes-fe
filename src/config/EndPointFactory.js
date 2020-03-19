@@ -4,7 +4,7 @@ class EndPointFactory {
     let apiHost = 'http://transportes.com';
     let apiPort = ':80';
     let prodUrl = 'https://cams-sanchez-be.herokuapp.com';
-    let apiUrl = apiHost + apiPort;
+    let apiUrl = apiHost + apiPort + '/api';
 
 
     console.log("PRocess Env Vars", process.env);

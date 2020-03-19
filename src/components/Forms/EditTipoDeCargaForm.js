@@ -8,7 +8,7 @@ import TiposDeCargaHelper from '../../helpers/TiposDeCargaHelper';
 class EditTipoDeCargaForm extends Component {
 
   state = {
-    _id:'',
+    id:'',
     nombre:'',
     unidadMetrica:'',
     descripcion:'',
@@ -25,7 +25,7 @@ class EditTipoDeCargaForm extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const tipoCarga = {
-      _id: this.props.currentItem._id,
+      id: this.props.currentItem.id,
       nombre:this.state.nombre !=='' ? this.state.nombre : this.props.currentItem.nombre,
       unidadMetrica:this.state.unidadMetrica !=='' ? this.state.unidadMetrica : this.props.currentItem.unidadMetrica,
       descripcion:this.state.descripcion !=='' ? this.state.descripcion : this.props.currentItem.descripcion
@@ -45,7 +45,7 @@ class EditTipoDeCargaForm extends Component {
     event.preventDefault();
 
     const tipoCarga = {
-      _id: this.props.currentItem._id,
+      id: this.props.currentItem.id,
     };
 
     if(await this.catalogHelper.deleteTipoDeCarga(tipoCarga) === true) {

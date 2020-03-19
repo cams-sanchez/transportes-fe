@@ -36,7 +36,7 @@ class TiposDeCargaHelper extends AxiosHelper {
       this.headerConfiguration,
     ).then( response => {
       if(response.data.success === true) {
-        this.tiposDeCarga = response.data.data;
+        this.tiposDeCarga = response.data.tiposDeCarga;
         return true;
       }
     }).catch(error => {

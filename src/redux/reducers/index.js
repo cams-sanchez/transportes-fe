@@ -6,6 +6,7 @@ import EstablecimientoReducer from './EstablecimientoReducer';
 import TipoMantenimientoReducer from './TipoMantenimientoReducer'
 import TipoIncidenciaReducer from './TipoIncidenciaReducer'
 import UnidadReducer from './UnidadReducer';
+import TiroReducer from "./TiroReducer";
 
 import {combineReducers} from 'redux';
 
@@ -19,6 +20,7 @@ const allReducers = combineReducers({
   TipoMantenimientoReducer,
   TipoIncidenciaReducer,
   UnidadReducer,
+  TiroReducer,
 });
 
 export default allReducers;

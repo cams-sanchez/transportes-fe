@@ -4,7 +4,7 @@ import CrearUnidades from '../pages/unidades/CrearUnidades';
 
 const UnidadesRoutes = (props) => {
   let { userPermissions } = props;
-  console.log("In Routes Catalogs");
+  console.log("In Routes Unidades");
   return (
     <React.Fragment>
       <LayoutRoute

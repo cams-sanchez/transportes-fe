@@ -21,6 +21,10 @@ class TirosEndPoints extends EndPointFactory{
   uploadImagesToTiro(){
     return this.createApiUrl('/tiros/upload');
   }
+
+  uploadExcelFile(){
+    return this.createApiUrl('/tiros/excel');
+  }
 }
 
 export default TirosEndPoints;

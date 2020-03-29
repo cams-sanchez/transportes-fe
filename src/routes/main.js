@@ -8,6 +8,7 @@ import LoginHelper from '../helpers/LoginHelper';
 import CatalogRoutes from '../routes/CatalogRoutes';
 import UnidadesRoutes from '../routes/UnidadesRoutes';
 import Login from '../pages/login/Login';
+import TirosRoutes from "./TirosRoutes";
 
 class MainRouter extends React.Component {
 
@@ -42,7 +43,7 @@ getUserInfoFromToken = async () => {
     // on the local storage, but if we want to validate secure routes it means we must have something save
 
     if (this.props.permissions && this.props.permissions.length === 0) {
-      this.getUserInfoFromToken();
+      //this.getUserInfoFromToken();
     }
 
     const userPermissions = 'b';
@@ -58,6 +59,7 @@ getUserInfoFromToken = async () => {
         />
         <CatalogRoutes userPermissions={userPermissions}/>
         <UnidadesRoutes userPermissions={userPermissions}/>
+        <TirosRoutes userPermissions={userPermissions}/>
       </React.Fragment>
     );
   };

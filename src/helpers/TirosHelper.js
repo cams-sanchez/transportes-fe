@@ -99,6 +99,24 @@ class TirosHelper extends AxiosHelper {
         });
     };
 
+    postUploadEvidencias = async (evidenciasForm) => {
+        let urlApi = this.apiUrlGenerator.uploadImagesToTiro();
+
+        return await axios.post(
+            urlApi,
+            evidenciasForm,
+            this.headerFileUploadConfiguration
+        ).then(res => {
+            if (res.data.success === true) {
+                this.tiros = res.data.tiro;
+                return true;
+            }
+        }).catch(error => {
+            this.check401Error(error);
+            return false;
+        });
+    };
+
     getTiroByDelivery = async (tiroToFind) => {
         let urlApi = this.apiUrlGenerator.getTirosByDelivery();
         urlApi+= tiroToFind.deliveryNumber;

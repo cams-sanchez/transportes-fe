@@ -32,6 +32,16 @@ const TiroReducer = (state = initialState, action) => {
                 ...state,
                 tiros: action.payload,
             };
+        case 'SetDelivery':
+            return {
+                ...state,
+                deliveryImg: action.payload,
+            };
+        case 'SetEstablecimiento':
+            return {
+                ...state,
+                establecimientoImg: action.payload,
+            };
         default:
             return {
                 ...state,

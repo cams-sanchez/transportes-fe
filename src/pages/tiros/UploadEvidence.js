@@ -19,6 +19,60 @@ class UploadEvidence extends Component {
     };
 
     render() {
+
+        let tableImages = '';
+
+        console.log("DELIVERY IMAGE", this.props.deliveryImg);
+        if (this.props.deliveryImg) {
+            tableImages =
+                <div className="table-overflow">
+                    <Table size="sm">
+                       <thead>
+                           <tr>
+                               <th>Delivery</th>
+                               <th>Establecimiento</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <td>
+                                   <img src={this.props.deliveryImg.foto_url} alt="delivery"/>
+                               </td>
+                               <td>
+                                   <img src={this.props.establecimientoImg.foto_url} alt="establecimiento"/>
+                               </td>
+                           </tr>
+                       </tbody>
+                    </Table>
+                </div>;
+        }
+
+
+        if (this.props.tiros[0]) {
+            console.log("TIRpo", this.props.tiros[0].evidencias);
+            tableImages =
+                <div className="table-overflow">
+                    <Table size="sm">
+                        <thead>
+                        <tr>
+                            <th>Delivery</th>
+                            <th>Establecimiento</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <img src={this.props.tiros[0].evidencias[1].foto_url} alt="delivery"/>
+                            </td>
+                            <td>
+                                <img src={this.props.tiros[0].evidencias[0].foto_url} alt="estavlecimiento"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </Table>
+                </div>;
+        }
+
         return (
             <Page
                 title=""
@@ -80,6 +134,9 @@ class UploadEvidence extends Component {
                                         </tbody>
                                     </Table>
                                 </div>
+
+                                {tableImages}
+
                             </CardBody>
                         </Card>
                     </Col>
@@ -92,7 +149,10 @@ class UploadEvidence extends Component {
 const mapStateToProps = (reduxState, ownProps) => {
     return {
         currentItem: reduxState.GenericReducer.currentItem,
-        tiros: reduxState.TiroReducer.tiros
+        tiros: reduxState.TiroReducer.tiros,
+        deliveryImg: reduxState.TiroReducer.deliveryImg,
+        establecimientoImg: reduxState.TiroReducer.establecimientoImg,
+
     }
 };
 

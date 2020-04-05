@@ -3,7 +3,7 @@ class EndPointFactory {
   createApiUrl(endPoint) {
     let apiHost = 'http://transportes.com';
     let apiPort = ':80';
-    let prodUrl = 'http://transportes-be-laravel.herokuapp.com';
+    let prodUrl = 'https://transportes-be-laravel.herokuapp.com';
     let apiUrl = apiHost + apiPort + '/api';
 
 

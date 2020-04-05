@@ -1,6 +1,7 @@
 import React from 'react';
 import {LayoutRoute, MainLayout} from '../components/Layout';
 import UploadExcel from '../pages/tiros/UploadExcel';
+import UploadEvidence from "../pages/tiros/UploadEvidence";
 
 const TirosRoutes = (props) => {
     let {userPermissions} = props;
@@ -31,15 +32,15 @@ const TirosRoutes = (props) => {
                 userPermissions={userPermissions}
                 componentPermissions={['a', 'b']}
             />
-            {/*<LayoutRoute
+            <LayoutRoute
                 exact
                 path="/tiros/upload/evidencias"
                 layout={MainLayout}
-                component={UploadEvidencias}
+                component={UploadEvidence}
                 userPermissions={userPermissions}
                 componentPermissions={['a', 'b']}
             />
-            <LayoutRoute
+            {/*<LayoutRoute
                 exact
                 path="/tiros/eliminar"
                 layout={MainLayout}

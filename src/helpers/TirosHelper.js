@@ -98,6 +98,25 @@ class TirosHelper extends AxiosHelper {
             return false;
         });
     };
+
+    getTiroByDelivery = async (tiroToFind) => {
+        let urlApi = this.apiUrlGenerator.getTirosByDelivery();
+        urlApi+= tiroToFind.deliveryNumber;
+        console.log("URL TO ACCESS ",urlApi);
+        return await axios.get(
+            urlApi,
+            this.headerConfiguration
+        ).then(res => {
+            console.log("Response from server ", res.data);
+            if (res.data.success === true) {
+                this.tiros = res.data.tiro;
+                return true;
+            }
+        }).catch(error => {
+            this.check401Error(error);
+            return false;
+        });
+    };
 }
 
 export default TirosHelper

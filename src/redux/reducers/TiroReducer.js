@@ -1,15 +1,28 @@
 const initialState = {
     tiros: [],
     id: '',
-    viaje_id: '',
-    unidad_id: '',
+    viaje: '',
+    ciudad: '',
+    unidad: '',
+    establecimiento: '',
     tipo_de_carga_id: '',
     cantidad: '',
     delivery: '',
-    solicitud: '',
-    numero_de_pedido: '',
+    epv: '',
+    jefe_de_sector: '',
+    sdic: '',
+    doc: '',
+    region: '',
+    fecha_entrega_solicitada: '',
+    propuesta_361: '',
     notas: '',
     status: '',
+    deliveryImg: '',
+    establecimientoImg: '',
+    comentarios: '',
+    latitude: '',
+    longitude: ''
+
 };
 
 const TiroReducer = (state = initialState, action) => {

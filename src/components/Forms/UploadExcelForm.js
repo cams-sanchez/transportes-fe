@@ -22,7 +22,7 @@ class UploadExcelForm extends Component {
         event.preventDefault();
 
         let formData = new FormData();
-        formData.append('excelFile', this.state.excelFile)
+        formData.append('excelFile', this.state.excelFile);
 
         //reseting form values
         this.setState({

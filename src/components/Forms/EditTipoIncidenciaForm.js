@@ -3,18 +3,18 @@ import { withRouter } from "react-router-dom";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import allActions from '../../redux/actions';
 import { connect } from 'react-redux';
-import TiposDeCargaHelper from '../../helpers/TiposDeCargaHelper';
+import TipoIncidenciaHelper from '../../helpers/TipoIncidenciaHelper';
 
-class EditTipoDeCargaForm extends Component {
+class EditTipoIncidenciaForm extends Component {
 
   state = {
-    id:'',
+    _id:'',
     nombre:'',
-    unidadMetrica:'',
+    bloquealaRuta: false,
     descripcion:'',
   };
 
-  catalogHelper = new TiposDeCargaHelper();
+  catalogHelper = new TipoIncidenciaHelper();
 
   handleChange = (event) => {
     this.setState({
@@ -24,16 +24,17 @@ class EditTipoDeCargaForm extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const tipoCarga = {
-      id: this.props.currentItem.id,
-      nombre:this.state.nombre !=='' ? this.state.nombre : this.props.currentItem.nombre,
-      unidadMetrica:this.state.unidadMetrica !=='' ? this.state.unidadMetrica : this.props.currentItem.unidadMetrica,
-      descripcion:this.state.descripcion !=='' ? this.state.descripcion : this.props.currentItem.descripcion
+
+    const mantenimiento = {
+      _id: this.props.currentItem._id,
+      nombre:this.state.nombre !== '' ? this.state.nombre: this.props.currentItem.nombre,
+      bloquealaRuta:this.state.bloquealaRuta !== '' ? this.state.bloquealaRuta: this.props.currentItem.bloquealaRuta,
+      descripcion:this.state.descripcion !== '' ? this.state.descripcion: this.props.currentItem.descripcion,
     };
 
-    if(await this.catalogHelper.putTipoDeCarga(tipoCarga) === true) {
-      if (await this.catalogHelper.getTiposDeCarga() === true) {
-        this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
+    if(await this.catalogHelper.putTipoIncidencia(mantenimiento) === true) {
+      if (await this.catalogHelper.getTipoIncidencia() === true) {
+        this.props.SetIncidencias(this.catalogHelper.tipoIncidencia);
       }
       this.props.CloseModal();
     } else if(this.helper.is401Redirect === true) {
@@ -44,13 +45,13 @@ class EditTipoDeCargaForm extends Component {
   handleDeleteSubmit = async (event) => {
     event.preventDefault();
 
-    const tipoCarga = {
-      id: this.props.currentItem.id,
+    const mant = {
+      _id: this.props.currentItem._id,
     };
 
-    if(await this.catalogHelper.deleteTipoDeCarga(tipoCarga) === true) {
-      if (await this.catalogHelper.getTiposDeCarga() === true) {
-        this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
+    if(await this.catalogHelper.deleteTipoIncidencia(mant) === true) {
+      if (await this.catalogHelper.getTipoIncidencia() === true) {
+        this.props.SetIncidencias(this.catalogHelper.tipoIncidencia);
       }
       this.props.CloseModal();
     } else if(this.catalogHelper.is401Redirect === true) {
@@ -71,19 +72,24 @@ class EditTipoDeCargaForm extends Component {
           <Col>
             <FormGroup>
               <Label for="Nombre">Nombre</Label>
-              <Input type="text" defaultValue={currentItem.nombre} name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
+              <Input type="text" defaultValue={currentItem.nombre} name="nombre" placeholder="Basico" onChange={this.handleChange}/>
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
-              <Label for="Unidad Métrica">Unidad Métrica</Label>
-              <Input type="text" defaultValue={currentItem.unidadMetrica} name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
+              <Label for="Bloque La Ruta">Bloque La Ruta {currentItem.bloquealaRuta}</Label>
+              <Input type="select" name="bloquealaRuta" onChange={this.handleChange}>
+                <option key="120a" selected>{(currentItem.bloquealaRuta === true)? 'Si':'No'}</option>
+                <option key="120c">No</option>
+                <option key="120d">Si</option>
+              </Input>
+
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="Descripcion">Descripcion</Label>
-              <Input type="text" defaultValue={currentItem.descripcion} name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
+              <Input type="text" defaultValue={currentItem.descripcion} name="descripcion" placeholder="Manto. básico" onChange={this.handleChange}/>
             </FormGroup>
           </Col>
         </Row>
@@ -116,8 +122,8 @@ class EditTipoDeCargaForm extends Component {
 const mapDispatchToProps= (dispath) =>{
   return {
     CloseModal: ()=>{dispath(allActions.GenericAction.closeModal())},
-    SetAllTiposDeCarga: (allTiposDeCarga)=> {dispath(allActions.TipoDeCargaAction.setAllTiposDeCarga(allTiposDeCarga))},
+    SetIncidencias: (allIncidencias) => {dispath(allActions.TipoIncidenciaAction.setIncidencias(allIncidencias));},
   }
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(EditTipoDeCargaForm));
+export default connect(null, mapDispatchToProps)(withRouter(EditTipoIncidenciaForm));

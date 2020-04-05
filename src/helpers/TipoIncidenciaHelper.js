@@ -1,23 +1,23 @@
 import AxiosHelper from './AxiosHelper';
-import TipoCargaEndPoints from '../config/TipoCargaEndPoints';
+import TipoIncidenciaEndPoints from '../config/TipoIncidenciaEndPoints';
 import axios from 'axios';
 
-class TiposDeCargaHelper extends AxiosHelper {
+class TipoIncidenciaHelper extends AxiosHelper {
 
-  tiposDeCarga;
+  tipoIncidencia;
 
   constructor () {
     super();
-    this.tiposDeCarga = {};
-    this.apiUrlGenerator = new TipoCargaEndPoints();
+    this.tipoIncidencia = {};
+    this.apiUrlGenerator = new TipoIncidenciaEndPoints();
   }
 
-  postTipoDeCarga = async (newTipoCarga) => {
-    let urlApi = this.apiUrlGenerator.setNewTipoCarga();
+  postTipoIncidencia = async (newIncidencia) => {
+    let urlApi = this.apiUrlGenerator.setNewTipoIncidencia();
 
     return await axios.post(
       urlApi,
-      newTipoCarga,
+      newIncidencia,
       this.headerConfiguration
     ).then(res => {
       if(res.data.success === true) {
@@ -29,14 +29,14 @@ class TiposDeCargaHelper extends AxiosHelper {
     });
   };
 
-  getTiposDeCarga = async () => {
-    let apiCall = this.apiUrlGenerator.getAllTiposDeCarga();
+  getTipoIncidencia = async () => {
+    let apiCall = this.apiUrlGenerator.getAllTiposIncidencia();
     return await axios.get(
       apiCall,
       this.headerConfiguration,
     ).then( response => {
       if(response.data.success === true) {
-        this.tiposDeCarga = response.data.tiposDeCarga;
+        this.tipoIncidencia = response.data.data;
         return true;
       }
     }).catch(error => {
@@ -45,12 +45,12 @@ class TiposDeCargaHelper extends AxiosHelper {
     });
   };
 
-  putTipoDeCarga = async(tipoDeCarga) =>{
-    let urlApi = this.apiUrlGenerator.editTipoCarga();
+  putTipoIncidencia = async(incidencia) =>{
+    let urlApi = this.apiUrlGenerator.editTipoIncidencia();
 
     return await axios.put(
       urlApi,
-      tipoDeCarga,
+      incidencia,
       this.headerConfiguration
     ).then(res => {
       if(res.data.success === true) {
@@ -62,13 +62,13 @@ class TiposDeCargaHelper extends AxiosHelper {
     });
   };
 
-  deleteTipoDeCarga = async(tipoDeCarga) =>{
-    let urlApi = this.apiUrlGenerator.deleteTipoCarga();
-    console.log("Item To Delete ", tipoDeCarga, this.headerConfiguration);
+  deleteTipoIncidencia = async(incidencia) =>{
+    let urlApi = this.apiUrlGenerator.deleteTipoIncidencia();
+
     return await axios({
       url:urlApi,
       method:'delete',
-      data : tipoDeCarga,
+      data : incidencia,
       headers: {
         'Authorization': 'Bearer ' + this.tokenBearer,
       }
@@ -83,4 +83,4 @@ class TiposDeCargaHelper extends AxiosHelper {
   };
 }
 
-export default TiposDeCargaHelper
+export default TipoIncidenciaHelper

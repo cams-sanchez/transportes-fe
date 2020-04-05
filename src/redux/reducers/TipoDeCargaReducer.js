@@ -8,10 +8,6 @@ const initialState = {
 
 const tipoDeCargaReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GetAllItems':
-      return {
-        ...state,
-      };
     case 'SetAllTiposDeCarga':
       return {
         ...state,

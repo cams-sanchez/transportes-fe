@@ -6,25 +6,45 @@ import { connect } from 'react-redux';
 import allActions from '../redux/actions';
 import LoginHelper from '../helpers/LoginHelper';
 import CatalogRoutes from '../routes/CatalogRoutes';
-import LoginRoutes from './LoginRoutes';
+import UnidadesRoutes from '../routes/UnidadesRoutes';
 import Login from '../pages/login/Login';
+import TirosRoutes from "./TirosRoutes";
 
 class MainRouter extends React.Component {
 
   loginHelper = new LoginHelper();
 
-  getUserInfoFromToken = async () => {
-    //Check on Back end the token and permission. and remove the settimeout that is emuilation the Back end
-    console.log("Checking TokenInfo");
+
+getUserInfoFromToken = async () => {
+
+  console.log("We got no permissions on local storage, we're going to try to get them from Server if user is logged");
+
+  let localStorageUserInfo = JSON.parse(this.loginHelper.localStorageHelper.getValueForKey('loggedUserInfo'));
+
+  if( Object.entries(localStorageUserInfo).length === 0) {
+    console.log("Getting User info from From Serrver");
     if(await this.loginHelper.getUserInfofromToken() === true) {
-      console.log("Found Permissions", this.loginHelper.loggedUserInfo);
-      this.props.SetUserInfo(this.loginHelper.loggedUserInfo);
+      localStorageUserInfo = this.loginHelper.loggedUserInfo
+      this.props.SetUserInfo(localStorageUserInfo);
+      console.log("We got User Info From Server", );
+    } else {
+      console.log("User may not be logged in");
     }
-    console.log("Userperm", this.loginHelper.loggedUserInfo);
-  };
+  }
+};
 
   securedRoutes = () => {
-    console.log("Secured Roytes");
+    console.log("Secured Routes");
+
+    //TODO In some cases, not able to reproduce yet the lenght can no be accessed du undefinied
+    //may be related to reloading of the page but still not able to replicate
+
+    //NOTE: This was in render method, but in theory if the user is in login it means that there is nothing
+    // on the local storage, but if we want to validate secure routes it means we must have something save
+
+    if (this.props.permissions && this.props.permissions.length === 0) {
+      //this.getUserInfoFromToken();
+    }
 
     const userPermissions = 'b';
     return (
@@ -38,15 +58,14 @@ class MainRouter extends React.Component {
           componentPermissions={['b', 'c']} //permisos del componene
         />
         <CatalogRoutes userPermissions={userPermissions}/>
+        <UnidadesRoutes userPermissions={userPermissions}/>
+        <TirosRoutes userPermissions={userPermissions}/>
       </React.Fragment>
     );
   };
 
   render () {
 
-    if (this.props.permissions.length === 0) {
-      this.getUserInfoFromToken();
-    }
     const userPermissions = 'b';
     return (
       <BrowserRouter>

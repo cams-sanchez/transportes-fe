@@ -1,4 +1,5 @@
 import AxiosHelper from './AxiosHelper';
+import EstablecimientoEndPoints from '../config/EstablecimientoEndPoints';
 import axios from 'axios';
 
 class EstablecimientoHelper extends AxiosHelper {
@@ -10,6 +11,7 @@ class EstablecimientoHelper extends AxiosHelper {
     super();
     this.establecimientos = {};
     this.tipoEstablecimientos = [];
+    this.apiUrlGenerator = new EstablecimientoEndPoints();
   }
 
   postEstablecimiento = async (newEstablecimiento) => {
@@ -97,6 +99,60 @@ class EstablecimientoHelper extends AxiosHelper {
       return false;
     });
   };
+
+  postTipoEstablecimiento = async (newTipoEstablecimiento) => {
+    let urlApi = this.apiUrlGenerator.setNewTipoEstablecimiento();
+
+    return await axios.post(
+      urlApi,
+      newTipoEstablecimiento,
+      this.headerConfiguration
+    ).then(res => {
+      if(res.data.success === true) {
+        return true;
+      }
+    }).catch(error => {
+      this.check401Error(error);
+      return false;
+    });
+  };
+
+  putTipoEstablecimiento = async(tipoEstablecimiento) =>{
+    let urlApi = this.apiUrlGenerator.editTipoEstablecimiento();
+
+    return await axios.put(
+      urlApi,
+      tipoEstablecimiento,
+      this.headerConfiguration
+    ).then(res => {
+      if(res.data.success === true) {
+        return true;
+      }
+    }).catch(error => {
+      this.check401Error(error);
+      return false;
+    });
+  };
+
+  deleteTipoEstablecimiento = async(tipoEstablecimiento) =>{
+    let urlApi = this.apiUrlGenerator.deleteTipoEstablecimiento();
+    return await axios({
+      url:urlApi,
+      method:'delete',
+      data : tipoEstablecimiento,
+      headers: {
+        'Authorization': 'Bearer ' + this.tokenBearer,
+      }
+    }).then(res => {
+      if(res.data.success === true) {
+        return true;
+      }
+    }).catch(error => {
+      this.check401Error(error);
+      return false;
+    });
+  };
+
 }
 
 export default EstablecimientoHelper

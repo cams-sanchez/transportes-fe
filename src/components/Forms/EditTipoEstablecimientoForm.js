@@ -3,18 +3,16 @@ import { withRouter } from "react-router-dom";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import allActions from '../../redux/actions';
 import { connect } from 'react-redux';
-import TiposDeCargaHelper from '../../helpers/TiposDeCargaHelper';
+import EstablecimientoHelper from '../../helpers/EstablecimientoHelper';
 
-class EditTipoDeCargaForm extends Component {
+class EditTipoEstablecimientoForm extends Component {
 
   state = {
-    id:'',
+    _id:'',
     nombre:'',
-    unidadMetrica:'',
-    descripcion:'',
   };
 
-  catalogHelper = new TiposDeCargaHelper();
+  catalogHelper = new EstablecimientoHelper();
 
   handleChange = (event) => {
     this.setState({
@@ -24,16 +22,15 @@ class EditTipoDeCargaForm extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const tipoCarga = {
-      id: this.props.currentItem.id,
-      nombre:this.state.nombre !=='' ? this.state.nombre : this.props.currentItem.nombre,
-      unidadMetrica:this.state.unidadMetrica !=='' ? this.state.unidadMetrica : this.props.currentItem.unidadMetrica,
-      descripcion:this.state.descripcion !=='' ? this.state.descripcion : this.props.currentItem.descripcion
+
+    const tipoEstab = {
+      _id: this.props.currentItem._id,
+      nombre:this.state.nombre !== '' ? this.state.nombre: this.props.currentItem.nombre,
     };
 
-    if(await this.catalogHelper.putTipoDeCarga(tipoCarga) === true) {
-      if (await this.catalogHelper.getTiposDeCarga() === true) {
-        this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
+    if(await this.catalogHelper.putTipoEstablecimiento(tipoEstab) === true) {
+      if (await this.catalogHelper.getTipoEstablecimientos() === true) {
+        this.props.SetAllTipoEstablecimientos(this.catalogHelper.tipoEstablecimientos);
       }
       this.props.CloseModal();
     } else if(this.helper.is401Redirect === true) {
@@ -44,13 +41,13 @@ class EditTipoDeCargaForm extends Component {
   handleDeleteSubmit = async (event) => {
     event.preventDefault();
 
-    const tipoCarga = {
-      id: this.props.currentItem.id,
+    const tipoEstab = {
+      _id: this.props.currentItem._id,
     };
 
-    if(await this.catalogHelper.deleteTipoDeCarga(tipoCarga) === true) {
-      if (await this.catalogHelper.getTiposDeCarga() === true) {
-        this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
+    if(await this.catalogHelper.deleteTipoEstablecimiento(tipoEstab) === true) {
+      if (await this.catalogHelper.getTipoEstablecimientos() === true) {
+        this.props.SetAllTipoEstablecimientos(this.catalogHelper.tipoEstablecimientos);
       }
       this.props.CloseModal();
     } else if(this.catalogHelper.is401Redirect === true) {
@@ -72,18 +69,6 @@ class EditTipoDeCargaForm extends Component {
             <FormGroup>
               <Label for="Nombre">Nombre</Label>
               <Input type="text" defaultValue={currentItem.nombre} name="nombre" placeholder="trailer, lote, etc." onChange={this.handleChange}/>
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label for="Unidad Métrica">Unidad Métrica</Label>
-              <Input type="text" defaultValue={currentItem.unidadMetrica} name="unidadMetrica" placeholder="pz, Kg, etc." onChange={this.handleChange}/>
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label for="Descripcion">Descripcion</Label>
-              <Input type="text" defaultValue={currentItem.descripcion} name="descripcion" placeholder="caja con 80 pzas" onChange={this.handleChange}/>
             </FormGroup>
           </Col>
         </Row>
@@ -116,8 +101,8 @@ class EditTipoDeCargaForm extends Component {
 const mapDispatchToProps= (dispath) =>{
   return {
     CloseModal: ()=>{dispath(allActions.GenericAction.closeModal())},
-    SetAllTiposDeCarga: (allTiposDeCarga)=> {dispath(allActions.TipoDeCargaAction.setAllTiposDeCarga(allTiposDeCarga))},
+    SetAllTipoEstablecimientos: (allTiposEstablecimientos) => {dispath(allActions.EstablecimientoAction.setTipoEstablecimientos(allTiposEstablecimientos));},
   }
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(EditTipoDeCargaForm));
+export default connect(null, mapDispatchToProps)(withRouter(EditTipoEstablecimientoForm));

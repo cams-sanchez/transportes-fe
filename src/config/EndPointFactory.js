@@ -1,0 +1,19 @@
+class EndPointFactory {
+
+  createApiUrl(endPoint) {
+    let apiHost = 'http://transportes.com';
+    let apiPort = ':80';
+    let prodUrl = 'http://transportes-be-laravel.herokuapp.com';
+    let apiUrl = apiHost + apiPort + '/api';
+
+
+    console.log("PRocess Env Vars", process.env);
+    if(process.env.REACT_APP_USE_PROD_URL === "true") {
+      console.log("Seems we're in prod going to use Prod URL");
+      apiUrl = prodUrl;
+    }
+    return  apiUrl + endPoint;
+  }
+}
+
+export default EndPointFactory;

@@ -22,6 +22,7 @@ class AxiosHelper {
     setHeaderConfiguration = () => {
         this.headerConfiguration = {
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Authorization': 'Bearer ' + this.tokenBearer,
             }
         };
@@ -30,6 +31,7 @@ class AxiosHelper {
     setUploadHeaderConfiguration = () => {
         this.headerFileUploadConfiguration = {
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Authorization': 'Bearer ' + this.tokenBearer,
                 'Content-Type': 'multipart/form-data',
             }

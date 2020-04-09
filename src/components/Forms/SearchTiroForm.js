@@ -8,7 +8,7 @@ import TirosHelper from "../../helpers/TirosHelper";
 class SearchTiroForm extends Component {
 
     state = {
-        deliveryNumber: '1071309355',
+        deliveryNumber: '',
     };
 
     helper = new TirosHelper();
@@ -42,7 +42,7 @@ class SearchTiroForm extends Component {
 
         //reseting form values
         this.setState({
-            deliveryNumber: '1071309355',
+            deliveryNumber: '',
         });
 
         if (await this.helper.getTiroByDelivery(tiroToFind) === true) {

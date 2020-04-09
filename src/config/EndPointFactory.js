@@ -10,7 +10,7 @@ class EndPointFactory {
     console.log("PRocess Env Vars", process.env);
     if(process.env.REACT_APP_USE_PROD_URL === "true") {
       console.log("Seems we're in prod going to use Prod URL");
-      apiUrl = prodUrl + apiPort + '/api';
+      apiUrl = prodUrl + '/api';
     }
     return  apiUrl + endPoint;
   }

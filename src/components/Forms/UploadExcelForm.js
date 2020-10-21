@@ -16,8 +16,8 @@ import TirosHelper from "../../helpers/TirosHelper";
 class UploadExcelForm extends Component {
   state = {
     excelFile: "",
-    cleanName: "",
     dropdownOpen: false,
+    dropDownValue: 'Zona Republica',
   };
 
   helper = new TirosHelper();
@@ -30,9 +30,11 @@ class UploadExcelForm extends Component {
       propValue = event.target.files[0];
     }
 
+    console.log('Prop Name', propName);
+    console.log('Prop Value', propValue);
+
     this.setState({
-      propName: propValue,
-      cleanName: propValue,
+      excelFile: propValue,
     });
   };
 
@@ -40,13 +42,9 @@ class UploadExcelForm extends Component {
     event.preventDefault();
 
     let formData = new FormData();
+    console.log('Excel FIle ', this.state)
     formData.append("excelFile", this.state.excelFile);
     formData.append("zonaRepublica", this.state.zonaRepublica);
-
-    //reseting form values
-    this.setState({
-      cleanName: "",
-    });
 
     if ((await this.helper.postUploadExcel(formData)) === true) {
       alert("Se subio correctamente");
@@ -57,6 +55,16 @@ class UploadExcelForm extends Component {
     }
   };
 
+  handleDropdownChange= (event) => {
+    console.log('EVNET VALUEs ', event.target.innerText);
+    const propValue = event.target.innerText;
+
+    this.setState({
+      zonaRepublica: propValue,
+      dropDownValue: propValue,
+    });
+  };
+
   toggle = () => {
     this.setState({ dropdownOpen: this.state.dropdownOpen ? false : true });
   };
@@ -65,14 +73,28 @@ class UploadExcelForm extends Component {
     return (
       <Form
         onSubmit={this.handleSubmit}
-        handleSubmit
         className="wholeWidth"
         encType="multipart/form-data"
       >
         <FormGroup row>
+          <Col sm={2} className="pt-3">
+            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+              <DropdownToggle className="bg-gradient-theme-left border-0" caret>
+                {this.state.dropDownValue}
+              </DropdownToggle>
+              <DropdownMenu name="zonaRepublica">
+                <DropdownItem name="Norte" value="Norte" onClick={this.handleDropdownChange}>Norte</DropdownItem>
+                <DropdownItem name="Bajio" value="Bajio" onClick={this.handleDropdownChange}>Bajio</DropdownItem>
+                <DropdownItem name="Sureste" value="Sureste" onClick={this.handleDropdownChange}>Sureste</DropdownItem>
+                <DropdownItem name="Centro" value="Centro" onClick={this.handleDropdownChange}>Centro</DropdownItem>
+                <DropdownItem name="Pacifico" value="Pacifico" onClick={this.handleDropdownChange}>Pacifico</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </Col>
+        </FormGroup>
+        <FormGroup row>
           <Col sm={2}>
             <Input
-              value={this.state.cleanName}
               type="file"
               name="excelFile"
               placeholder="Excel File"
@@ -80,23 +102,9 @@ class UploadExcelForm extends Component {
               accept=".xls, .xlsx"
             />
             <FormText color="muted">
-              This is some placeholder block-level help text for the above
-              input. It's a bit lighter and easily wraps to a new line.
+              El excel Debe llevar las siguientes columnas: Ciudad Jefe de sector
+              Delivery Nombre Region Fecha entrega solicitada Propuesta 361
             </FormText>
-          </Col>
-          <Col sm={2} className="pt-3">
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle className="bg-gradient-theme-left border-0" caret>
-                Zona Republica
-              </DropdownToggle>
-              <DropdownMenu onChange={this.handleChange} name="zonaRepublica">
-                <DropdownItem>Norte</DropdownItem>
-                <DropdownItem>Bajio</DropdownItem>
-                <DropdownItem>Sureste</DropdownItem>
-                <DropdownItem>Centro</DropdownItem>
-                <DropdownItem>Pacifico</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
           </Col>
         </FormGroup>
         <FormGroup row>
@@ -114,7 +122,7 @@ class UploadExcelForm extends Component {
         </FormGroup>
       </Form>
     );
-  }
+  };
 }
 
 export default UploadExcelForm;

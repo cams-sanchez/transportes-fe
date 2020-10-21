@@ -84,7 +84,7 @@ class TirosHelper extends AxiosHelper {
 
     postUploadExcel = async (newExcel) => {
         let urlApi = this.apiUrlGenerator.uploadExcelFile();
-
+        console.log('Ápo URL ', urlApi)
         return await axios.post(
             urlApi,
             newExcel,

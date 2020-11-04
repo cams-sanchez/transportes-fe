@@ -6,6 +6,10 @@ class TirosEndPoints extends EndPointFactory{
     return this.createApiUrl('/tiros/');
   }
 
+  getAllActiveTiros(){
+    return this.createApiUrl('/tiros/active');
+  }
+
   getTirosByDelivery(){
     return this.createApiUrl('/tiros/delivery/');
   }

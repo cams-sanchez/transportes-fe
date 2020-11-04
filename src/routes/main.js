@@ -9,6 +9,7 @@ import CatalogRoutes from '../routes/CatalogRoutes';
 import UnidadesRoutes from '../routes/UnidadesRoutes';
 import Login from '../pages/login/Login';
 import TirosRoutes from "./TirosRoutes";
+import AvanceDeTrenRoutes from "./AvanceDeTrenRoutes";
 
 class MainRouter extends React.Component {
 
@@ -60,6 +61,7 @@ getUserInfoFromToken = async () => {
         <CatalogRoutes userPermissions={userPermissions}/>
         <UnidadesRoutes userPermissions={userPermissions}/>
         <TirosRoutes userPermissions={userPermissions}/>
+        <AvanceDeTrenRoutes userPermissions={userPermissions}/>
       </React.Fragment>
     );
   };

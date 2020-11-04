@@ -54,7 +54,7 @@ const navTiros = [
 ];
 
 const navItems = [
-  { to: '/', name: 'Dashboard', exact: true, Icon: MdDashboard },
+  { to: '/dashboard', name: 'Dashboard', exact: true, Icon: MdDashboard },
   { to: '/viajes', name: 'Viajes', exact: false, Icon: MdLocalShipping },
   { to: '/usuarios', name: 'Usuarios', exact: false, Icon: MdPeople },
 ];

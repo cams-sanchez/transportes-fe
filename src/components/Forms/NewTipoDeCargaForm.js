@@ -41,7 +41,7 @@ class NewTipoDeCargaForm extends Component {
       if (await this.catalogHelper.getTiposDeCarga() === true) {
         this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
       }
-    } else if(this.helper.is401Redirect === true) {
+    } else if(this.catalogHelper.is401Redirect === true) {
       this.props.history.push('/login');
     }
   };

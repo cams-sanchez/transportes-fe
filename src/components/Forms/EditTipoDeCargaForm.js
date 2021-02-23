@@ -36,7 +36,7 @@ class EditTipoDeCargaForm extends Component {
         this.props.SetAllTiposDeCarga(this.catalogHelper.tiposDeCarga);
       }
       this.props.CloseModal();
-    } else if(this.helper.is401Redirect === true) {
+    } else if(this.catalogHelper.is401Redirect === true) {
       this.props.history.push('/login');
     }
   };

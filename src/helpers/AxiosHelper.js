@@ -7,6 +7,7 @@ class AxiosHelper {
     tokenBearer = '';
     headerConfiguration;
     headerFileUploadConfiguration;
+    headerConfigurationOnLogin;
     is401Redirect = false;
     estadosRepublica = [];
     localStorageHelper;
@@ -17,7 +18,19 @@ class AxiosHelper {
         this.getTokenBearer();
         this.setHeaderConfiguration();
         this.setUploadHeaderConfiguration();
+        this.setHeaderConfigurationOnLogin();
     }
+
+    setHeaderConfigurationOnLogin = () => {
+        this.headerConfigurationOnLogin = {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            }
+        };
+
+        console.log('________________________________-HEADER CONFIGURATIOn ',this.headerConfigurationOnLogin);
+    };
 
     setHeaderConfiguration = () => {
         this.headerConfiguration = {

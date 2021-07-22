@@ -18,7 +18,7 @@ class LoginHelper extends AxiosHelper {
   loginUser = async (userInfo) => {
     let urlApi = this.apiUrlGenerator.loginUser();
 
-    return await axios.post(urlApi, userInfo)
+    return await axios.post(urlApi, userInfo, this.headerConfigurationOnLogin)
       .then(response => {
         if (response.data.success === true) {
 

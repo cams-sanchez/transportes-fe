@@ -52,11 +52,11 @@ class AvancesSeleccionTren extends Component {
   };
 
   render() {
-    let currentItem = {};
+    /* let currentItem = {};
 
     if (this.props.currentItem) {
       currentItem = this.props.currentItem;
-    }
+    } */
 
     return (
       <Form onSubmit={this.handleSubmit} className="wholeWidth">

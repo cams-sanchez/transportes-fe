@@ -1,4 +1,3 @@
-import TirosHelper from './TirosHelper';
 import TirosEndPoints from '../config/TirosEndPoints'
 import TrenEndPoints from '../config/TrenEndPoints'
 import axios from 'axios';

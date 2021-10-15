@@ -6,9 +6,10 @@ services:
       dockerfile: Dockerfile
     image: node:14.17-alpine3.10
     ports:
-      - '${APP_PORT:-3000}:3000'
+      - '3000:3000'
     volumes:
       - '.:/var/www/html'
+      - '/var/www/html/node_modules'
     networks:
       - sail
     stdin_open: true

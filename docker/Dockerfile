@@ -34,4 +34,4 @@ RUN chmod +x /usr/local/bin/start-container
 
 EXPOSE 3000
 
-ENTRYPOINT ["start-container"]
+ENTRYPOINT ["npm start"]

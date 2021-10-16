@@ -2,14 +2,15 @@ version: '3'
 services:
   node.react:
     build:
-      context: ./docker
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: docker/Dockerfile
     image: node:14.17-alpine3.10
+
     ports:
       - '3000:3000'
     volumes:
-      - '.:/var/www/html'
-      - '/var/www/html/node_modules'
+      - '.:/app'
+      - '/app/node_modules'
     networks:
       - sail
     stdin_open: true
